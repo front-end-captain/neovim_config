@@ -1,10 +1,11 @@
 local M = {}
-local setDiagnosticSigns = function() -- local signs = {
-  --   { name = "DiagnosticSignError", text = " " },
-  --   { name = "DiagnosticSignWarn", text = " " },
-  --   { name = "DiagnosticSignHint", text = " " },
-  --   { name = "DiagnosticSignInfo", text = " " },
-  -- }
+local setDiagnosticSigns = function()
+  local signs = {
+    { name = "DiagnosticSignError", text = "✖" },
+    { name = "DiagnosticSignWarn", text = "⚠" },
+    { name = "DiagnosticSignHint", text = "➤" },
+    { name = "DiagnosticSignInfo", text = "ℹ" },
+  }
   vim.diagnostic.config({
     virtual_text = false,
     -- signs = { active = signs },
@@ -21,9 +22,9 @@ local setDiagnosticSigns = function() -- local signs = {
     },
   })
 
-  -- for _, sign in ipairs(signs) do
-  --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  -- end
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
 end
 
 local spec = {
@@ -83,7 +84,7 @@ local spec = {
       nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")
       nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
       nmap("<leader>O", "<cmd>Lspsaga outline<CR>", "[O]utline toggle")
-      nmap("<leader>da", require("telescope.builtin").diagnostics, "[D]i[A]gnostics")
+      nmap("<leader>da", vim.diagnostic.open_float, "[D]i[A]gnostics")
       -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
       -- nmap("<leader>f", function()
       --   vim.lsp.buf.format { async = true }
