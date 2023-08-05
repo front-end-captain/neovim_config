@@ -49,6 +49,10 @@ local formatter_config = {
         ["sh"] = {
           require("formatter.filetypes.sh").prettier,
         },
+        ["python"] = {
+          -- pip install black
+          require("formatter.filetypes.python").black,
+        },
       },
     })
     vim.api.nvim_set_keymap(
