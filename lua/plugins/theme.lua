@@ -1,14 +1,5 @@
 local M = {}
 
--- local colorscheme = "gruvbox-baby"
--- local colorscheme = "zenbones"
-
-local colorscheme = "material"
--- darker | lighter | oceanic | palenight | deep ocean
-vim.g.material_style = "oceanic"
-
-vim.o.background = "dark"
--- vim.o.background = "light"
 vim.o.termguicolors = true
 
 vim.cmd([[highlight ColorColumn guibg=grey]])
@@ -16,25 +7,34 @@ vim.cmd([[highlight ColorColumn guibg=grey]])
 local gruvbox = {
   "luisiacc/gruvbox-baby",
   config = function()
-    pcall(vim.cmd, "colorscheme " .. colorscheme)
+    vim.o.background = "dark"
   end,
 }
-local zenbones = {
-  "mcchrish/zenbones.nvim",
-  dependencies = { "rktjmp/lush.nvim" },
+local vscode = {
+  "Mofiqul/vscode.nvim",
   config = function()
-    pcall(vim.cmd, "colorscheme " .. colorscheme)
+    vim.o.background = "light"
+    require("vscode").setup({
+      -- style = "light",
+      transparent = true,
+      italic_comments = true,
+      disable_nvimtree_bg = true,
+    })
+    require("vscode").load()
   end,
 }
-local material = {
-  "marko-cerovac/material.nvim",
+local github = {
+  "projekt0n/github-nvim-theme",
   config = function()
-    pcall(vim.cmd, "colorscheme " .. colorscheme)
-    -- local material = require("material")
+    vim.o.background = "light"
   end,
 }
-table.insert(M, gruvbox)
-table.insert(M, zenbones)
-table.insert(M, material)
+-- table.insert(M, gruvbox)
+table.insert(M, vscode)
+-- table.insert(M, github)
+
+-- pcall(vim.cmd, "colorscheme " .. "gruvbox-baby")
+pcall(vim.cmd, "colorscheme " .. "vscode")
+-- pcall(vim.cmd, "colorscheme " .. "github_light")
 
 return M

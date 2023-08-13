@@ -51,7 +51,6 @@ local function notifyLSP()
   local function progress_handler(err, result, ctx, config)
     local client_id = ctx.client_id
     local client_name = vim.lsp.get_client_by_id(client_id).name
-    -- print(client_name)
 
     if client_name == "null-ls" then
       return
@@ -59,7 +58,6 @@ local function notifyLSP()
 
     local val = result.value
     local task = result.token
-    -- print(result)
 
     if not val.kind then
       return
@@ -129,7 +127,7 @@ local spec = {
     local stages_util = require("notify.stages.util")
 
     notify.setup({
-      background_colour = "#121212",
+      -- background_colour = "#121212",
       stages = {
         function(state)
           local next_height = state.message.height + 2
