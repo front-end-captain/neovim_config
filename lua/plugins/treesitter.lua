@@ -2,7 +2,7 @@ local M = {}
 
 local spec = {
   "nvim-treesitter/nvim-treesitter",
-  event = "VeryLazy",
+  event = "BufEnter",
   dependencies = {
     "nvim-treesitter/playground",
     "nvim-treesitter/nvim-treesitter-textobjects",
