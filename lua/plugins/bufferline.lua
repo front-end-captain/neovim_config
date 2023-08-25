@@ -6,7 +6,7 @@ local opt = { noremap = true, silent = true }
 map("n", "<leader>k", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<leader>j", ":BufferLineCycleNext<CR>", opt)
 -- colose current active tab
-map("n", "<C-w>", ":bdelete!<CR>", opt)
+-- map("n", "<C-w>", ":bdelete!<CR>", opt)
 map("n", "<leader>q", ":bdelete!<CR>", opt)
 -- map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
 -- map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
@@ -40,22 +40,18 @@ local spec = {
           end
           return s
         end,
-        -- 'slant' | 'padded_slant' | 'thick' | 'thin'
-        separator_style = "thick",
+        -- 'slant' | 'padded_slant' | 'thick' | 'thin' | 'slope' | 'padded_slope'
+        separator_style = "slant",
         always_show_bufferline = true,
         show_buffer_close_icons = false,
         show_close_icon = false,
         color_icons = true,
-        indicator = {
-          -- icon = "▎", -- this should be omitted if indicator style is not 'icon'
-          style = "underline",
-        },
       },
       highlights = {
         buffer_selected = {
           bold = true,
           italic = true,
-        },
+        }
       },
     })
   end,

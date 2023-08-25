@@ -49,6 +49,11 @@ local formatter_config = {
         ["sh"] = {
           require("formatter.filetypes.sh").prettier,
         },
+        ["go"] = {
+          -- go install mvdan.cc/gofumpt@latest
+          -- https://github.com/mvdan/gofumpt
+          require("formatter.filetypes.go").gofmt,
+        },
         ["python"] = {
           -- pip install black
           require("formatter.filetypes.python").black,
