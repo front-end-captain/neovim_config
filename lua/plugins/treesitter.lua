@@ -23,6 +23,7 @@ local spec = {
       "rust",
       "markdown",
       "markdown_inline",
+      "thrift",
     },
     highlight = {
       enable = true,
