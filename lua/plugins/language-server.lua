@@ -8,7 +8,7 @@ local setDiagnosticSigns = function()
   }
   vim.diagnostic.config({
     virtual_text = false,
-    -- signs = { active = signs },
+    signs = { active = signs },
     update_in_insert = true,
     underline = { severity_sort = true },
     severity_sort = true,
