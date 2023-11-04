@@ -2,7 +2,7 @@ local M = {}
 
 local null_ls = {
   "jose-elias-alvarez/null-ls.nvim",
-  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  event = { "BufReadPost", "BufNewFile", "BufWritePre", "BufWritePost" },
   config = function()
     local null_ls = require("null-ls")
     null_ls.setup({
