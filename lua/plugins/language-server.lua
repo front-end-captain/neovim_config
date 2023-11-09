@@ -170,6 +170,24 @@ local spec = {
           },
         },
       },
+      cssls = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150,
+        },
+        settings = {
+          css = {
+            validate = true,
+          },
+          less = {
+            validate = true,
+          },
+          scss = {
+            validate = true,
+          },
+        },
+      },
     }
 
     require("neoconf").setup()
