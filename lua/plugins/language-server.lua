@@ -199,7 +199,7 @@ local spec = {
       ensure_installed = vim.tbl_keys(servers),
       handlers = {
         function(server_name)
-          require("lspconfig")[server_name].setup(servers[server_name])
+          require("lspconfig")[server_name].setup(servers[server_name] or {})
         end,
       },
     })
