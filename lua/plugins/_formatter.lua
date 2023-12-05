@@ -49,6 +49,9 @@ local formatter_config = {
         ["sh"] = {
           require("formatter.filetypes.sh").prettier,
         },
+        ["rust"] = {
+          require("formatter.filetypes.rust").rustfmt,
+        },
         ["go"] = {
           -- go install mvdan.cc/gofumpt@latest
           -- https://github.com/mvdan/gofumpt
