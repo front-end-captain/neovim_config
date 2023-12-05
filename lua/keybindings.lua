@@ -7,25 +7,25 @@ vim.g.maplocalleader = " "
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
-map("n", "<leader>nl", ":nohlsearch<CR>", opt)
+map("n", "<leader>l", ":nohlsearch<CR>", opt)
 
-map("n", "<leader>sv", ":vsp<CR>", opt)
-map("n", "<leader>sh", ":sp<CR>", opt)
-map("n", "<leader>sc", "<C-w>c", opt)
-map("n", "<leader>so", "<C-w>o", opt)
+-- map("n", "<leader>sv", ":vsp<CR>", opt)
+-- map("n", "<leader>sh", ":sp<CR>", opt)
+-- map("n", "<leader>sc", "<C-w>c", opt)
+-- map("n", "<leader>so", "<C-w>o", opt)
 
 -- Alt + hjkl jump between windows
-map("n", "<A-H>", "<C-w>h", opt)
-map("n", "<A-J>", "<C-w>j", opt)
-map("n", "<A-K>", "<C-w>k", opt)
-map("n", "<A-L>", "<C-w>l", opt)
+map("n", "<A-h>", "<C-w>h", opt)
+map("n", "<A-j>", "<C-w>j", opt)
+map("n", "<A-k>", "<C-w>k", opt)
+map("n", "<A-l>", "<C-w>l", opt)
 
 -- indent line
 map("v", "<", "<gv", opt)
 map("v", ">", ">gv", opt)
 -- move current line
-map("v", "J", ":move '>+1<CR>gv=gv", opt)
-map("v", "K", ":move '<-2<CR>gv=gv", opt)
+-- map("v", "J", ":move '>+1<CR>gv=gv", opt)
+-- map("v", "K", ":move '<-2<CR>gv=gv", opt)
 
 map("n", "<C-j>", "4j", opt)
 map("n", "<C-k>", "4k", opt)
@@ -52,5 +52,3 @@ map("n", "L", "$", opt)
 map("n", "dL", "d$", opt)
 -- yank to line end
 map("n", "yL", "y$", opt)
-
--- map("n", "y", "yiw", opt)
