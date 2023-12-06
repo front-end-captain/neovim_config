@@ -15,8 +15,8 @@ local spec = {
 
       on_attach = function(bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>o", "<cmd>AerialToggle!<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<A-k>", "<cmd>AerialPrev<CR>", {})
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "<A-j>", "<cmd>AerialNext<CR>", {})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<A-K>", "<cmd>AerialPrev<CR>", {})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "<A-J>", "<cmd>AerialNext<CR>", {})
       end,
     })
   end,
