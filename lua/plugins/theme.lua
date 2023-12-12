@@ -1,20 +1,28 @@
 local M = {}
 
+local DEFAULT_BACKGROUND = "dark"
+
 local HOME = os.getenv("HOME")
 local wezterm_color_scheme_path = HOME .. "/.config/wezterm/wezterm_color_scheme.lua"
 
-local wezterm_color_scheme = require("wezterm_color_scheme")
-local wezterm_color_schemes = require("wezterm_color_schemes")
+local wezterm_color_scheme_ok, wezterm_color_scheme = pcall(require, "wezterm_color_scheme")
+local wezterm_color_schemes_ok, wezterm_color_schemes = pcall(require, "wezterm_color_schemes")
+
 local wezterm_color_scheme_names = {}
-for _, scheme in pairs(wezterm_color_schemes) do
-  wezterm_color_scheme_names[#wezterm_color_scheme_names + 1] = scheme.name
+if wezterm_color_schemes_ok then
+  for _, scheme in pairs(wezterm_color_schemes) do
+    wezterm_color_scheme_names[#wezterm_color_scheme_names + 1] = scheme.name
+  end
 end
 
 local function find_background(current_scheme)
-  local background = ""
-  for _, scheme in pairs(wezterm_color_schemes) do
-    if scheme.name == current_scheme then
-      background = scheme.background
+  local background = DEFAULT_BACKGROUND
+
+  if wezterm_color_schemes_ok then
+    for _, scheme in pairs(wezterm_color_schemes) do
+      if scheme.name == current_scheme then
+        background = scheme.background
+      end
     end
   end
 
@@ -30,7 +38,7 @@ vim.cmd([[highlight ColorColumn guibg=grey]])
 local vscode_theme = {
   "Mofiqul/vscode.nvim",
   config = function()
-    local bg = find_background(wezterm_color_scheme)
+    local bg = find_background(wezterm_color_scheme_ok and wezterm_color_scheme and "")
     vim.o.background = bg
     local vscode = require("vscode")
     vscode.setup({
