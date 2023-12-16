@@ -10,27 +10,11 @@ and write following content:
 ```lua
 return {
   {
-    name = "Hopscotch",
-    background = "dark",
-  },
-  {
-    name = "Zenburn",
-    background = "dark",
-  },
-  {
-    name = "ToyChest",
-    background = "dark",
-  },
-  {
     name = "FishTank",
     background = "dark",
   },
   {
-    name = "Gruvbox dark, pale (base16)",
-    background = "dark",
-  },
-  {
-    name = "Atelier Savanna (base16)",
+    name = "Gruvbox Material (Gogh)",
     background = "dark",
   },
   {
@@ -42,7 +26,15 @@ return {
     background = "dark",
   },
   {
+    name = "Atelier Savanna Light (base16)",
+    background = "light",
+  },
+  {
     name = "Vs Code Light+ (Gogh)",
+    background = "light",
+  },
+  {
+    name = "Atelier Forest Light (base16)",
     background = "light",
   },
 }
