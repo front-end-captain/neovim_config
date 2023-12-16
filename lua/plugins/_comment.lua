@@ -1,10 +1,11 @@
 local M = {}
+
 local spec = {
   "numToStr/Comment.nvim",
   event = "VeryLazy",
   dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
   config = function()
-    require("Comment").setup({
+    require("ts_context_commentstring").setup({
       padding = true,
       sticky = true,
       ignore = nil,
@@ -31,5 +32,9 @@ local spec = {
     })
   end,
 }
+
 table.insert(M, spec)
+
+vim.g.skip_ts_context_commentstring_module = true
+
 return M

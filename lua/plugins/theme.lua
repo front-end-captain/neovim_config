@@ -1,9 +1,25 @@
 local M = {}
 
+local os = require('os')
+
+local function getHOME ()
+  local os_name = os.getenv("OS")
+  if os_name == 'Windows_NT' then
+    return os.getenv('HOMEDRIVE') .. os.getenv('HOMEPATH')
+  end
+
+  if os_name == "Darwin" then
+    return os.getenv("HOME")
+  end
+end
+
+local path_separator = package.config:sub(1,1)
+
+local HOME = getHOME()
+
 local DEFAULT_BACKGROUND = "dark"
 
-local HOME = os.getenv("HOME")
-local wezterm_color_scheme_path = HOME .. "/.config/wezterm/wezterm_color_scheme.lua"
+local wezterm_color_scheme_path = HOME .. path_separator .. table.concat({'.config', 'wezterm', 'wezterm_color_scheme.lua'}, path_separator)
 
 local wezterm_color_scheme_ok, wezterm_color_scheme = pcall(require, "wezterm_color_scheme")
 local wezterm_color_schemes_ok, wezterm_color_schemes = pcall(require, "wezterm_color_schemes")
@@ -28,8 +44,6 @@ local function find_background(current_scheme)
 
   return background
 end
-
--- print(wezterm_color_schemes[1].name)
 
 vim.o.termguicolors = true
 

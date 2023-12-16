@@ -1,44 +1,10 @@
 local M = {}
 local spec = {
   "lukas-reineke/indent-blankline.nvim",
-  event = "VeryLazy",
+  -- event = "VeryLazy",
+  main = "ibl",
   config = function()
-    require("indent_blankline").setup({
-      space_char_blankline = " ",
-      show_current_context = true,
-      -- show_current_context_start = true,
-      context_patterns = {
-        "class",
-        "function",
-        "method",
-        "element",
-        "^if",
-        "^while",
-        "^for",
-        "^object",
-        "^table",
-        "block",
-        "arguments",
-      },
-      -- :echo &filetype
-      filetype_exclude = {
-        "dashboard",
-        "packer",
-        "terminal",
-        "help",
-        "log",
-        "markdown",
-        "TelescopePrompt",
-        "lsp-installer",
-        "lspinfo",
-        "toggleterm",
-      },
-      -- char = '¦'
-      -- char = '┆'
-      -- char = '│'
-      -- char = "⎸",
-      char = "▏",
-    })
+    require("ibl").setup({})
   end,
 }
 table.insert(M, spec)
