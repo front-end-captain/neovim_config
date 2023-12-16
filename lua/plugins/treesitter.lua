@@ -6,7 +6,7 @@ local spec = {
   dependencies = {
     "nvim-treesitter/playground",
     "nvim-treesitter/nvim-treesitter-textobjects",
-    -- "JoosepAlviste/nvim-ts-context-commentstring",
+    "JoosepAlviste/nvim-ts-context-commentstring",
   },
   main = "nvim-treesitter.configs",
   build = ":TSUpdate",

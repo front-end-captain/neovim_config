@@ -1,25 +1,32 @@
 local M = {}
 
-local os = require('os')
+local os = require("os")
 
-local function getHOME ()
+local function getHOME()
   local os_name = os.getenv("OS")
-  if os_name == 'Windows_NT' then
-    return os.getenv('HOMEDRIVE') .. os.getenv('HOMEPATH')
+  if os_name == "Windows_NT" then
+    return os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH")
   end
 
-  if os_name == "Darwin" then
-    return os.getenv("HOME")
-  end
+  return os.getenv("HOME")
 end
 
-local path_separator = package.config:sub(1,1)
+local path_separator = package.config:sub(1, 1)
 
 local HOME = getHOME()
 
 local DEFAULT_BACKGROUND = "dark"
 
-local wezterm_color_scheme_path = HOME .. path_separator .. table.concat({'.config', 'wezterm', 'wezterm_color_scheme.lua'}, path_separator)
+local wezterm_color_scheme_path = ""
+
+if os.getenv("WSL_DISTRO_NAME") == "Ubuntu" then
+  wezterm_color_scheme_path = "/mnt/c/Users/viking/"
+    .. table.concat({ ".config", "wezterm", "wezterm_color_scheme.lua" }, path_separator)
+else
+  wezterm_color_scheme_path = HOME
+    .. path_separator
+    .. table.concat({ ".config", "wezterm", "wezterm_color_scheme.lua" }, path_separator)
+end
 
 local wezterm_color_scheme_ok, wezterm_color_scheme = pcall(require, "wezterm_color_scheme")
 local wezterm_color_schemes_ok, wezterm_color_schemes = pcall(require, "wezterm_color_schemes")
@@ -52,7 +59,7 @@ vim.cmd([[highlight ColorColumn guibg=grey]])
 local vscode_theme = {
   "Mofiqul/vscode.nvim",
   config = function()
-    local bg = find_background(wezterm_color_scheme_ok and wezterm_color_scheme and "")
+    local bg = find_background(wezterm_color_scheme_ok and wezterm_color_scheme or "")
     vim.o.background = bg
     local vscode = require("vscode")
     vscode.setup({
