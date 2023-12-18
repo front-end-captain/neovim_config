@@ -4,7 +4,7 @@ local setDiagnosticSigns = function()
     { name = "DiagnosticSignError", text = "✖" },
     { name = "DiagnosticSignWarn", text = "⚠" },
     { name = "DiagnosticSignHint", text = "➤" },
-    { name = "DiagnosticSignInfo", text = "ℹ" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
   vim.diagnostic.config({
     virtual_text = false,

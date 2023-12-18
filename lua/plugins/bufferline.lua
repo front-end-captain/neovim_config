@@ -1,5 +1,7 @@
 local M = {}
 
+-- Hint = "", "➤"
+
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 -- go to prev tab and next tab
@@ -35,8 +37,8 @@ local spec = {
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
           local s = " "
           for e, n in pairs(diagnostics_dict) do
-            local sym = e == "error" and " " or (e == "warning" and " " or "")
-            s = s .. n .. sym
+            local sym = e == "error" and "✖" or (e == "warning" and "⚠" or "➤")
+            s = s .. n .. sym .. " "
           end
           return s
         end,
@@ -51,7 +53,21 @@ local spec = {
         buffer_selected = {
           bold = true,
           italic = true,
-        }
+        },
+        warning_selected = {
+          fg = "NONE",
+          bg = "NONE",
+          sp = "NONE",
+          bold = true,
+          italic = true,
+        },
+        error_selected = {
+          fg = "NONE",
+          bg = "NONE",
+          sp = "NONE",
+          bold = true,
+          italic = true,
+        },
       },
     })
   end,
