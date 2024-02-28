@@ -1,3 +1,6 @@
+-- load <project_root>/.vscode/settings.lua
+local local_config_loaded, local_config = pcall(require, "settings")
+
 local M = {}
 local setDiagnosticSigns = function()
   local signs = {
@@ -147,6 +150,9 @@ local spec = {
       -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
       eslint = {
         capabilities = capabilities,
+        settings = {
+          nodePath = local_config_loaded and local_config.eslint.nodePath or "node_modules"
+        }
       },
       tsserver = {
         on_attach = on_attach,
