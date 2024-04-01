@@ -4,7 +4,8 @@ local local_config_loaded, local_config = pcall(require, "settings")
 local M = {}
 local setDiagnosticSigns = function()
   local signs = {
-    { name = "DiagnosticSignError", text = "✖" },
+    -- 🆇 🅴 🆆 🅸 🅷 ⚠  ➤   ✘
+    { name = "DiagnosticSignError", text = "✘" },
     { name = "DiagnosticSignWarn", text = "⚠" },
     { name = "DiagnosticSignHint", text = "➤" },
     { name = "DiagnosticSignInfo", text = "" },
@@ -151,8 +152,8 @@ local spec = {
       eslint = {
         capabilities = capabilities,
         settings = {
-          nodePath = local_config_loaded and local_config.eslint.nodePath or "node_modules"
-        }
+          nodePath = local_config_loaded and local_config.eslint.nodePath or "node_modules",
+        },
       },
       tsserver = {
         on_attach = on_attach,

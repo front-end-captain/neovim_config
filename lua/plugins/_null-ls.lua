@@ -7,7 +7,7 @@ local null_ls = {
     local null_ls = require("null-ls")
     null_ls.setup({
       sources = {
-        -- npm i --location=global cspell http://cspell.org/
+        -- npm i -g cspell # http://cspell.org/
         null_ls.builtins.diagnostics.cspell.with({
           -- log_level = "info",
           diagnostic_config = {
