@@ -8,6 +8,7 @@ local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
 map("n", "<leader>l", ":nohlsearch<CR>", opt)
+map("n", "<leader>w", ":w<CR>", opt)
 
 -- map("n", "<leader>sv", ":vsp<CR>", opt)
 -- map("n", "<leader>sh", ":sp<CR>", opt)

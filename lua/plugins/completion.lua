@@ -24,10 +24,15 @@ local spec = {
         and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s")
           == nil
     end
-    require("luasnip.loaders.from_vscode").lazy_load()
+
+    local luasnip_vscode_loader = require("luasnip.loaders.from_vscode")
+    luasnip_vscode_loader.lazy_load({ paths = { "~/.config/nvim/snippets" } })
+    luasnip_vscode_loader.lazy_load()
+
     local luasnip = require("luasnip")
     local cmp = require("cmp")
     local lspkind = require("lspkind")
+
     cmp.setup({
       snippet = {
         expand = function(args)
