@@ -53,3 +53,6 @@ map("n", "L", "$", opt)
 map("n", "dL", "d$", opt)
 -- yank to line end
 map("n", "yL", "y$", opt)
+
+-- bring you to your last change position
+map("n", "bi", "`.", opt)
