@@ -8,7 +8,7 @@ local formatter_config = {
 
     require("formatter").setup({
       logging = true,
-      log_level = vim.log.levels.WARN,
+      log_level = vim.log.levels.INFO,
       filetype = {
         lua = {
           require("formatter.filetypes.lua").stylua,
@@ -29,16 +29,16 @@ local formatter_config = {
           require("formatter.filetypes.css").prettier,
         },
         ["less"] = {
-          prettier = util.withl(defaults.prettier, "less"),
+          util.withl(defaults.prettier, "less"),
         },
         ["scss"] = {
-          prettier = util.withl(defaults.prettier, "scss"),
+          util.withl(defaults.prettier, "scss"),
         },
         ["json"] = {
           require("formatter.filetypes.json").prettier,
         },
         ["jsonc"] = {
-          prettier = util.withl(defaults.prettier, "jsonc"),
+          util.withl(defaults.prettier, "jsonc"),
         },
         ["html"] = {
           require("formatter.filetypes.html").prettier,
