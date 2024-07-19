@@ -55,4 +55,4 @@ map("n", "dL", "d$", opt)
 map("n", "yL", "y$", opt)
 
 -- bring you to your last change position
-map("n", "bi", "`.", opt)
+map("n", "<leader>b", "`.", opt)
