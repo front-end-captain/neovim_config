@@ -4,11 +4,12 @@ local local_config_loaded, local_config = pcall(require, "settings")
 local M = {}
 local setDiagnosticSigns = function()
   local signs = {
-    -- 🆇 🅴 🆆 🅸 🅷 ⚠  ➤   ✘
+    -- 🆇 🅴 🆆 🅸 🅷 ⚠  ➤   ✘ 󰃃
     { name = "DiagnosticSignError", text = "✘" },
     { name = "DiagnosticSignWarn", text = "⚠" },
     { name = "DiagnosticSignHint", text = "➤" },
     { name = "DiagnosticSignInfo", text = "" },
+    -- { name = "BookmarkSign", text = "🆇" },
   }
   vim.diagnostic.config({
     virtual_text = false,
