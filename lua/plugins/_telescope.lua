@@ -41,7 +41,7 @@ local spec = {
       },
     })
     pcall(telescope.load_extension, "notify")
-    pcall(telescope.load_extension, "harpoon")
+    -- pcall(telescope.load_extension, "harpoon")
   end,
 }
 table.insert(M, spec)
@@ -55,5 +55,5 @@ vim.api.nvim_set_keymap(
 -- global search
 vim.api.nvim_set_keymap("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 -- list harpoon marked files
-vim.api.nvim_set_keymap("n", "<C-m>", ":Telescope harpoon marks<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-m>", ":Telescope harpoon marks<CR>", { noremap = true, silent = true })
 return M
