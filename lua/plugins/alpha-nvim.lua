@@ -10,6 +10,31 @@ end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_dashboard })
 
+local header = {
+  [[+++++;:.                                            .:;+++++]],
+  [[++xxxxxxx+:.                                    .:+xxxxxxx++]],
+  [[.+xxxxxxx++++;.                               ;++++xxxxxxx+.]],
+  [[  :+xxx++++++++;.                          .;++++++++x+x+:. ]],
+  [[   .xxxxxxx+xxxx++.                      .++xxxxxxxxxxxx.   ]],
+  [[    ;xx+++;:+xxxxx+:                    :+xxxxx+:;+++xx;.   ]],
+  [[    .++++x;..:xxxxx++.                .;xxxxxx:..;x++++.    ]],
+  [[    .+++++++++xxxxxxx+.:            :.+xxxxxxxx++++++++.    ]],
+  [[    .+++;++;..;++xxxxx+;.          .;+xxxxx+x;..;++;+++.    ]],
+  [[    .+++++++..:x+xx+xxxx;..      ..;+xxx+xxx+:..+++++++.    ]],
+  [[     :xxxxxx:..;xxxx++xxx+:.    ..++xx++xxxx;..:xxxxxx;     ]],
+  [[     .+xxxxx;..:xxxxxxx++x+:.  .:+x++xxxxxxx;..;xxxxx+.     ]],
+  [[      :+xxxx;....xxxxx+xxx++;;;;++xxx+xxxxx....;xxxx+:      ]],
+  [[    .+xx++++;:...:;++xxxxxx++x+++xxxxxx++;::..:;++++xx+.    ]],
+  [[    :xxxxx+x+;:;;;:+xxxxxxxxxxxxxxxxxxxx+:;;;:;+++xxxxx:    ]],
+  [[   .;xxxxxxxxx+...:++xxxx++++x+++++xxxxx+:...+xxxxxxxxx+.   ]],
+  [[    :xxxxxxxxxx;:::::;++;;+:.++ :+;;++;:::::;xxxxxxxxxx:    ]],
+  [[    :xxxxxxxxxx++..:..;;;;. :++  .;;;;..:..++xxxxxxxxxx:    ]],
+  [[     .+xxxxxxxxxx+;:.::::.  ;xx    ::::.:;+xxxxxxxxxx+:     ]],
+  [[      :xxxxxxxxxxxx+:::.     ;:     .:::+xxxxxxxxxxxx:      ]],
+  [[       .+xxxxxxxxx;;:.                .::;xxxxxxxxx+.       ]],
+  [[         :+xxxx+;:.                      .:;+xx++;........]],
+}
+
 local spec = {
   "goolord/alpha-nvim",
   dependencies = {
@@ -19,16 +44,9 @@ local spec = {
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
-    dashboard.section.header.val = {
-      [[                               __                ]],
-      [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
-      [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-      [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-      [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-      [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-    }
+    dashboard.section.header.val = header
     dashboard.section.buttons.val = {
-      -- dashboard.button("e", "  File Explorer", ":NvimTreeToggle<CR>"),
+      dashboard.button("e", "  File Explorer", ":NvimTreeOpen<CR>"),
       dashboard.button("m", "󰃃 Bookmarks", ":Telescope bookmarks<CR>"),
       dashboard.button("g", "➤ Git", ":LazyGit<CR>"),
       dashboard.button("f", "  Find files", ":Telescope find_files<CR>"),

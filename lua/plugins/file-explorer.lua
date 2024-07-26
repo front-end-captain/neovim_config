@@ -18,7 +18,8 @@ local function on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts("Toggle"))
-  vim.api.nvim_set_keymap("n", "<leader>d", ":NvimTreeFocus<CR>", opts("Focus"))
+  vim.api.nvim_set_keymap("n", "<leader>d", ":NvimTreeOpen<CR>", opts("Focus"))
+  -- vim.api.nvim_set_keymap("n", "<leader>d", ":NvimTreeFocus<CR>", opts("Focus"))
   vim.api.nvim_set_keymap("n", "<leader>H", ":NvimTreeResize +10<CR>", opts("+Size"))
   vim.api.nvim_set_keymap("n", "<leader>L", ":NvimTreeResize -10<CR>", opts("-Size"))
 end
