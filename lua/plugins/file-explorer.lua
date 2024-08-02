@@ -50,7 +50,6 @@ local spec = {
       view = {
         width = 50,
         side = "right",
-        -- hide_root_folder = false,
         number = true,
         relativenumber = true,
         signcolumn = "yes",

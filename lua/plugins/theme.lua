@@ -19,8 +19,9 @@ local DEFAULT_BACKGROUND = "dark"
 
 local wezterm_color_scheme_path = ""
 
-if os.getenv("WSL_DISTRO_NAME") == "Ubuntu" then
-  wezterm_color_scheme_path = "/mnt/c/Users/viking/"
+if string.find(os.getenv("WSL_DISTRO_NAME"), "Ubuntu") then
+  wezterm_color_scheme_path = os.getenv("WINDOWS_HOME")
+    .. path_separator
     .. table.concat({ ".config", "wezterm", "wezterm_color_scheme.lua" }, path_separator)
 else
   wezterm_color_scheme_path = HOME
