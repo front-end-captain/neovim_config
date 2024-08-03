@@ -1,14 +1,14 @@
 <img src="./assets/screen_shot.png" />
 
-In WSL, should write this env in `~/.zshrc`:
-``` zsh
+In WSL(eg. Ubuntu), should export this env in `~/.zshrc`:
+```shell
 # sudo apt install --no-install-recommends wslu
 export WINDOWS_HOME=$(wslpath "$(wslvar USERPROFILE)")
 ```
 
 create wezterm color schemes config file:
 
-```
+```shell
 # on macos
 touch ~/.config/wezterm/wezterm_color_schemes.lua
 
