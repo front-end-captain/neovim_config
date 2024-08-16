@@ -10,6 +10,13 @@
           "javascript",
           "typescript"
         ],
+        "path": "./javascript/log.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "typescript"
+        ],
         "path": "./javascript/unit-test.json"
       }
     ]

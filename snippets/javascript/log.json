@@ -1,0 +1,22 @@
+{
+  "log": {
+    "prefix": "log",
+    "body": ["console.log('${1:prefix}')"],
+    "description": "add console log"
+  },
+  "info": {
+    "prefix": "info",
+    "body": ["console.info('${1:prefix}')"],
+    "description": "add console info"
+  },
+  "warn": {
+    "prefix": "warn",
+    "body": ["console.warn('${1:prefix}')"],
+    "description": "add console warn"
+  },
+  "error": {
+    "prefix": "error",
+    "body": ["console.error('${1:prefix}')"],
+    "description": "add console error"
+  }
+}
