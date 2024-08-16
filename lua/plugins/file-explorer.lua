@@ -7,6 +7,25 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+function FindKeywordInCurrentFolder()
+  local api = require("nvim-tree.api")
+  local utils = require("nvim-tree.utils")
+  -- TODO: should catch expection while call it
+  local node = api.tree.get_node_under_cursor()
+
+  if node.type == "directory" then
+    local lga = require("telescope").extensions.live_grep_args
+    local relative = utils.path_relative(node.absolute_path, vim.fn.getcwd())
+    local default_text = vim.fn.getreg()
+
+    lga.live_grep_args({
+      results_title = relative .. "/",
+      cwd = node.absolute_path,
+      default_text = default_text or "",
+    })
+  end
+end
+
 local function on_attach(bufnr)
   local api = require("nvim-tree.api")
 
@@ -22,6 +41,7 @@ local function on_attach(bufnr)
   -- vim.api.nvim_set_keymap("n", "<leader>d", ":NvimTreeFocus<CR>", opts("Focus"))
   vim.api.nvim_set_keymap("n", "<leader>H", ":NvimTreeResize +10<CR>", opts("+Size"))
   vim.api.nvim_set_keymap("n", "<leader>L", ":NvimTreeResize -10<CR>", opts("-Size"))
+  vim.api.nvim_set_keymap("n", "<leader>G", ":lua FindKeywordInCurrentFolder()<CR>", opts("-Size"))
 end
 
 local spec = {

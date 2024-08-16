@@ -1,8 +1,12 @@
 local M = {}
+
 local spec = {
   "nvim-telescope/telescope.nvim",
   -- event = "Verylazy",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope-live-grep-args.nvim",
+  },
   config = function()
     local telescope = require("telescope")
     telescope.setup({
@@ -41,9 +45,10 @@ local spec = {
       },
     })
     pcall(telescope.load_extension, "notify")
-    -- pcall(telescope.load_extension, "harpoon")
+    pcall(telescope.load_extension, "live_grep_args")
   end,
 }
+
 table.insert(M, spec)
 -- find file
 vim.api.nvim_set_keymap(
