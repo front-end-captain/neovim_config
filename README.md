@@ -1,4 +1,21 @@
+# Neovim Config
+
 <img src="./assets/screen_shot.png" />
+
+## How to use
+
+### prerequisite
+
+TODO:
+
+### startup
+
+```shell
+# make config folder in '~/.config/nvim'
+nvim
+```
+
+## Setup for WSL
 
 In WSL(eg. Ubuntu), should export this env in `~/.zshrc`:
 ```shell
@@ -6,6 +23,7 @@ In WSL(eg. Ubuntu), should export this env in `~/.zshrc`:
 export WINDOWS_HOME=$(wslpath "$(wslvar USERPROFILE)")
 ```
 
+## Setup for wezterm color scheme
 create wezterm color schemes config file:
 
 ```shell

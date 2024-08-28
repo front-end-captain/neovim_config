@@ -2,7 +2,7 @@ local M = {}
 
 local spec = {
   "nvim-telescope/telescope.nvim",
-  -- event = "Verylazy",
+  lazy = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",

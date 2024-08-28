@@ -34,6 +34,13 @@ package.path = package.path
 
 vim.loader.enable()
 
+local nvim = vim.version() ~= nil
+local nvr_executable = vim.fn.executable("nvr") == 1
+
+if nvim and nvr_executable then
+  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end
+
 require("options")
 require("keybindings")
 require("setup")
