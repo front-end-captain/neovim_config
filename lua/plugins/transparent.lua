@@ -9,6 +9,11 @@ local spec = {
         "NvimTreeNormal",
         "NvimTreeStatuslineNc",
       },
+      exclude_groups = {
+        "CursorLine",
+        "CursorLineNr",
+        "NeoTreeCursorLine",
+      },
     })
   end,
 }
