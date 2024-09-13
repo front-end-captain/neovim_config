@@ -1,15 +1,5 @@
 local M = {}
 
-local function open_dashboard(data)
-  -- print('open_dashboard', data.file)
-  if string.find(data.file, "NvimTree") then
-    -- print("open alpha")
-    vim.cmd("Alpha")
-  end
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_dashboard })
-
 local header = {
   [[+++++;:.                                            .:;+++++]],
   [[++xxxxxxx+:.                                    .:+xxxxxxx++]],

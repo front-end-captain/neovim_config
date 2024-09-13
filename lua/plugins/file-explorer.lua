@@ -1,6 +1,5 @@
 local M = {}
 
-
 local function opts(desc)
   return { desc = "nvim-tree: " .. desc, noremap = true, silent = true, nowait = true }
 end
@@ -47,7 +46,7 @@ local function findKeywordInCurrentFolder(state)
 
     lga.live_grep_args({
       results_title = relative .. "/",
-      cwd = node.absolute_path,
+      cwd = node:get_id(),
       default_text = default_text or "",
     })
   end
@@ -59,21 +58,20 @@ local spec = {
   branch = "v3.x",
   requires = {
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
-    "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   config = function()
     require("neo-tree").setup({
-      close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+      close_if_last_window = true,
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = false,
       open_files_do_not_replace_types = { "terminal", "trouble" }, -- when opening files, do not use windows containing these filetypes or buftypes
-      sort_case_insensitive = false,                               -- used when sorting files and directories in the tree
+      sort_case_insensitive = false, -- used when sorting files and directories in the tree
       default_component_configs = {
         container = {
-          enable_character_fade = true
+          enable_character_fade = true,
         },
         indent = {
           indent_size = 2,
@@ -102,7 +100,7 @@ local spec = {
             untracked = "★",
             deleted = "",
             ignored = "◌",
-          }
+          },
         },
         -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
         file_size = {
@@ -160,8 +158,8 @@ local spec = {
           ["R"] = "refresh",
           ["?"] = "show_help",
           ["i"] = "show_file_details",
-          ['G'] = findKeywordInCurrentFolder,
-        }
+          ["G"] = findKeywordInCurrentFolder,
+        },
       },
       filesystem = {
         filtered_items = {
@@ -191,7 +189,7 @@ local spec = {
           },
         },
         follow_current_file = {
-          enabled = false,         -- This will find and focus the file in the active buffer every time
+          enabled = false, -- This will find and focus the file in the active buffer every time
           --               -- the current file is changed while the tree is open.
           leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
@@ -216,7 +214,7 @@ local spec = {
     })
 
     vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree reveal toggle<CR>", opts("Toggle"))
-  end
+  end,
 }
 table.insert(M, spec)
 

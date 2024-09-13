@@ -6,8 +6,6 @@ local spec = {
     require("transparent").setup({
       extra_groups = {
         "BufferLineFill",
-        "NvimTreeNormal",
-        "NvimTreeStatuslineNc",
       },
       exclude_groups = {
         "CursorLine",
