@@ -21,7 +21,7 @@ vim.o.sidescrolloff = 8
 -- 使用相对行号
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- 高亮所在行
 vim.wo.cursorline = true
@@ -121,3 +121,18 @@ vim.cmd([[
   au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
   augroup END
 ]])
+
+vim.api.nvim_create_augroup("IrreplaceableWindows", { clear = true })
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = "IrreplaceableWindows",
+  pattern = "*",
+  callback = function()
+    local filetypes = { "OverseerList", "neo-tree" }
+    local buftypes = { "nofile", "terminal" }
+    if
+      vim.tbl_contains(buftypes, vim.bo.buftype) and vim.tbl_contains(filetypes, vim.bo.filetype)
+    then
+      vim.cmd("set winfixbuf")
+    end
+  end,
+})

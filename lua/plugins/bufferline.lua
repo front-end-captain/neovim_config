@@ -4,21 +4,15 @@ local M = {}
 
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
+
 -- go to prev tab and next tab
 map("n", "<leader>k", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<leader>j", ":BufferLineCycleNext<CR>", opt)
--- colose current active tab
--- map("n", "<C-w>", ":bdelete!<CR>", opt)
-map("n", "<leader>q", ":bdelete!<CR>", opt)
--- map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
--- map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
--- map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
 
 local spec = {
   "akinsho/bufferline.nvim",
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
-  },
+    "nvim-tree/nvim-web-devicons", },
   event = "VimEnter",
   config = function()
     require("bufferline").setup({
