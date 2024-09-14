@@ -81,6 +81,7 @@ local spec = {
       nmap("gd", function()
         telescope_builtin_pickers.lsp_definitions(telescope_builtin_picker_opts)
       end, "[G]oto [D]efinition")
+      -- nmap("gd", telescope_builtin_pickers.lsp_definitions, "[G]oto [D]efinition")
       nmap("gi", function()
         telescope_builtin_pickers.lsp_implementations(telescope_builtin_picker_opts)
       end, "[G]oto [I]mplementation")

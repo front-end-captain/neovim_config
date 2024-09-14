@@ -42,7 +42,7 @@ local function findKeywordInCurrentFolder(state)
   if node.type == "directory" then
     local lga = require("telescope").extensions.live_grep_args
     local relative = path_relative(node:get_id(), vim.fn.getcwd())
-    local default_text = vim.fn.getreg()
+    local default_text = vim.fn.getreg('"')
 
     lga.live_grep_args({
       results_title = relative .. "/",
