@@ -44,6 +44,8 @@ local function findKeywordInCurrentFolder(state)
     local relative = path_relative(node:get_id(), vim.fn.getcwd())
     local default_text = vim.fn.getreg('"')
 
+    default_text = string.gsub(default_text, "[\r\n]+", "")
+
     lga.live_grep_args({
       results_title = relative .. "/",
       cwd = node:get_id(),
