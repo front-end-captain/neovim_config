@@ -36,11 +36,12 @@ local spec = {
     local dashboard = require("alpha.themes.dashboard")
     dashboard.section.header.val = header
     dashboard.section.buttons.val = {
-      dashboard.button("e", "  File Explorer", ":Neotree toggle<CR>"),
-      dashboard.button("m", "󰃃 Bookmarks", ":Telescope bookmarks<CR>"),
-      dashboard.button("g", "➤ Git", ":LazyGit<CR>"),
-      dashboard.button("f", "  Find files", ":Telescope find_files<CR>"),
-      dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
+      dashboard.button("e", "⛷  File Explorer", ":Neotree toggle<CR>"),
+      dashboard.button("m", "🔖 Bookmarks", ":Telescope bookmarks<CR>"),
+      dashboard.button("g", "☕ Git", ":LazyGit<CR>"),
+      dashboard.button("f", "⛹  Find files", ":Telescope find_files<CR>"),
+      dashboard.button("s", "🔍 Global Search", ":Telescope live_grep<CR>"),
+      dashboard.button("q", "✘  Quit NVIM", ":qa<CR>"),
     }
     local handle = io.popen("fortune")
     local fortune = handle:read("*a")

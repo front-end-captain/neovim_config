@@ -62,7 +62,6 @@ local vscode_theme = {
     vscode.setup({
       style = bg,
       italic_comments = true,
-      disable_nvimtree_bg = true,
     })
     vscode.load()
   end,

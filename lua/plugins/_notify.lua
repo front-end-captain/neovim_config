@@ -98,15 +98,6 @@ local function notifyLSP()
     end
   end
 
-  -- local old_progress_handler = vim.lsp.handlers["$/progress"]
-  -- vim.lsp.handlers["$/progress"] = function(err, result, ctx, config)
-  -- if old_progress_handler then
-  --   old_progress_handler(err, result, ctx, config)
-  --   return
-  -- end
-  --   progress_handler(err, result, ctx, config)
-  -- end
-
   -- FIXME: "$/progress" event trigger twice
   if vim.lsp.handlers["$/progress"] then
     local old_handler = vim.lsp.handlers["$/progress"]
@@ -127,7 +118,6 @@ local spec = {
     local stages_util = require("notify.stages.util")
 
     notify.setup({
-      -- background_colour = "#121212",
       stages = {
         function(state)
           local next_height = state.message.height + 2

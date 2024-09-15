@@ -14,10 +14,8 @@ local spec = {
       delay = 100,
       -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
       filetypes_denylist = {
-        "NvimTree",
         "aerial",
         "notify",
-        "packer",
       },
       -- modes_allowlist: modes to illuminate, this is overriden by modes_denylist
       -- See `:help mode()` for possible values

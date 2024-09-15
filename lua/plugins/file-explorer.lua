@@ -216,6 +216,7 @@ local spec = {
     })
 
     vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree reveal toggle<CR>", opts("Toggle"))
+    vim.api.nvim_set_keymap("n", "<leader>E", ":Neotree reveal focus<CR>", opts("Focus"))
   end,
 }
 table.insert(M, spec)

@@ -1,7 +1,5 @@
 local M = {}
 
--- Hint = "", "➤"
-
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
@@ -12,7 +10,8 @@ map("n", "<leader>j", ":BufferLineCycleNext<CR>", opt)
 local spec = {
   "akinsho/bufferline.nvim",
   dependencies = {
-    "nvim-tree/nvim-web-devicons", },
+    "nvim-tree/nvim-web-devicons",
+  },
   event = "VimEnter",
   config = function()
     require("bufferline").setup({
@@ -21,7 +20,7 @@ local spec = {
         right_mouse_command = "bdelete! %d",
         offsets = {
           {
-            filetype = "NvimTree",
+            filetype = "neo-tree",
             text = "File Explorer",
             highlight = "Directory",
             text_align = "left",
@@ -30,11 +29,15 @@ local spec = {
         diagnostics = "nvim_lsp",
         -- -@diagnostic disable-next-line: unused-local
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          local s = " "
-          for e, n in pairs(diagnostics_dict) do
-            local sym = e == "error" and "✘" or (e == "warning" and "⚠" or "➤")
-            s = s .. n .. sym .. " "
+          local s = ""
+
+          if context.buffer:current() then
+            for e, n in pairs(diagnostics_dict) do
+              local sym = e == "error" and "🅴" or (e == "warning" and "🆆" or "🅷")
+              s = s .. n .. sym .. " "
+            end
           end
+
           return s
         end,
         -- 'slant' | 'padded_slant' | 'thick' | 'thin' | 'slope' | 'padded_slope'

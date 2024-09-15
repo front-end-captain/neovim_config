@@ -21,13 +21,6 @@ map("n", "<A-j>", "<C-w>j", opt)
 map("n", "<A-k>", "<C-w>k", opt)
 map("n", "<A-l>", "<C-w>l", opt)
 
--- indent line
-map("v", "<", "<gv", opt)
-map("v", ">", ">gv", opt)
--- move current line
--- map("v", "J", ":move '>+1<CR>gv=gv", opt)
--- map("v", "K", ":move '<-2<CR>gv=gv", opt)
-
 map("n", "<C-j>", "4j", opt)
 map("n", "<C-k>", "4k", opt)
 map("n", "<C-u>", "9k", opt)
