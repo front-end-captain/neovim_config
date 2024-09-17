@@ -1,4 +1,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local utils = require('utils')
+
+utils.add_package_path()
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -20,3 +23,12 @@ local options = {
 }
 
 require("lazy").setup("plugins", options)
+
+vim.loader.enable()
+
+local nvim = vim.version() ~= nil
+local nvr_executable = vim.fn.executable("nvr") == 1
+
+if nvim and nvr_executable then
+  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end

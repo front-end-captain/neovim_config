@@ -1,39 +1,9 @@
+local utils = require("utils")
+
 local M = {}
 
 local function opts(desc)
   return { desc = "nvim-tree: " .. desc, noremap = true, silent = true, nowait = true }
-end
-
-local path_separator = package.config:sub(1, 1)
-
----@param path string
----@return string
-local function path_add_trailing(path)
-  if path:sub(-1) == path_separator then
-    return path
-  end
-
-  return path .. path_separator
-end
-
---- Get a path relative to another path.
----@param path string
----@param relative_to string|nil
----@return string
-local function path_relative(path, relative_to)
-  if relative_to == nil then
-    return path
-  end
-
-  local _, r = path:find(path_add_trailing(relative_to), 1, true)
-  local p = path
-  if r then
-    -- take the relative path starting after '/'
-    -- if somehow given a completely matching path,
-    -- returns ""
-    p = path:sub(r + 1)
-  end
-  return p
 end
 
 local function findKeywordInCurrentFolder(state)
@@ -41,7 +11,7 @@ local function findKeywordInCurrentFolder(state)
 
   if node.type == "directory" then
     local lga = require("telescope").extensions.live_grep_args
-    local relative = path_relative(node:get_id(), vim.fn.getcwd())
+    local relative = utils.path_relative(node:get_id(), vim.fn.getcwd())
     local default_text = vim.fn.getreg('"')
 
     default_text = string.gsub(default_text, "[\r\n]+", "")

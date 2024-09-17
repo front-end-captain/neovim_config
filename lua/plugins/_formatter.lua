@@ -73,7 +73,7 @@ local formatter_config = {
       "n",
       "<leader>F",
       ":FormatWrite<CR>",
-      { noremap = true, silent = true, desc = "Format code" }
+      { noremap = true, silent = true, desc = "Format and Write code" }
     )
   end,
 }

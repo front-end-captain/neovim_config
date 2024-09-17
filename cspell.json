@@ -5,7 +5,7 @@
   // language - current active spelling language
   "language": "en",
   // words - list of words to be always considered correct
-  "words": ["shfmt", "builtins", "nvim", "notifs", "notifs", "postprocess"],
+  "words": ["shfmt", "builtins", "nvim", "notifs", "notifs", "postprocess", "distro"],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
