@@ -6,7 +6,17 @@
 
 ### prerequisite
 
-TODO:
+1. Install Glow
+```shell
+# Macos
+brew install glow
+
+# Ubuntu
+apt install glow
+
+# Windows11
+scoop install glow
+```
 
 ### startup
 

@@ -13,7 +13,7 @@ local spec = {
     local telescope = require("telescope")
     telescope.setup({
       defaults = {
-        initial_mode = "normal",
+        initial_mode = "insert",
         mappings = {
           i = {
             ["<C-n>"] = "move_selection_next",
@@ -23,6 +23,15 @@ local spec = {
             ["<C-u>"] = "preview_scrolling_up",
             ["<C-d>"] = "preview_scrolling_down",
             ["<CR>"] = utils.edit_respect_winfixbuf,
+          },
+          n = {
+            ["<CR>"] = utils.edit_respect_winfixbuf,
+            ["p"] = function(prompt_bufnr)
+              local actions_state = require("telescope.actions.state")
+              local current_picker = actions_state.get_current_picker(prompt_bufnr)
+              local text = vim.fn.getreg('"'):gsub("\n", "\\n")
+              current_picker:set_prompt(text, false)
+            end,
           },
         },
         -- file_ignore_patterns = {"*.png", "*.jpeg", "*.jpg", "dist" },
@@ -59,5 +68,7 @@ vim.api.nvim_set_keymap(
 )
 -- global search
 vim.api.nvim_set_keymap("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+-- resume prev search result
+vim.api.nvim_set_keymap("n", "<C-r>", ":Telescope resume<CR>", { noremap = true, silent = true })
 
 return M

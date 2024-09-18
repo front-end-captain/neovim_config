@@ -78,16 +78,9 @@ local spec = {
       end
 
       nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-      nmap("gd", function()
-        telescope_builtin_pickers.lsp_definitions(telescope_builtin_picker_opts)
-      end, "[G]oto [D]efinition")
-      -- nmap("gd", telescope_builtin_pickers.lsp_definitions, "[G]oto [D]efinition")
-      nmap("gi", function()
-        telescope_builtin_pickers.lsp_implementations(telescope_builtin_picker_opts)
-      end, "[G]oto [I]mplementation")
-      nmap("gr", function()
-        telescope_builtin_pickers.lsp_references(telescope_builtin_picker_opts)
-      end, "[G]oto [R]eferences")
+      nmap("gd", telescope_builtin_pickers.lsp_definitions, "[G]oto [D]efinition")
+      nmap("gi", telescope_builtin_pickers.lsp_implementations, "[G]oto [I]mplementation")
+      nmap("gr", telescope_builtin_pickers.lsp_references, "[G]oto [R]eferences")
       nmap("gh", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
 
       nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")

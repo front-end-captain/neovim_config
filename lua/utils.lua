@@ -212,11 +212,21 @@ local function edit_respect_winfixbuf(prompt_bufnr)
   end
 end
 
+---@param value string
+---@param register string
+local function copy_file_path_to_clipboard(value, register)
+  local notify = require("notify")
+
+  vim.fn.setreg(register, value)
+  notify("Copied: " .. value, vim.log.levels.INFO, { title = "Neo-tree" })
+end
+
 M.path_separator = path_separator
 M.path_add_trailing = path_add_trailing
 M.path_relative = path_relative
 M.get_host_os_home = get_host_os_home
 M.add_package_path = add_package_path
 M.edit_respect_winfixbuf = edit_respect_winfixbuf
+M.copy_file_path_to_clipboard = copy_file_path_to_clipboard
 
 return M
