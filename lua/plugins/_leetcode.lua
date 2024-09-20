@@ -24,6 +24,6 @@ local spec = {
 }
 table.insert(M, spec)
 
-vim.api.nvim_set_keymap("n", "<leader>r", ":Leet run<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>r", ":Leet run<CR>", { noremap = true, silent = true })
 
 return M

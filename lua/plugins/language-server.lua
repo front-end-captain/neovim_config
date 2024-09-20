@@ -83,7 +83,7 @@ local spec = {
       nmap("gr", telescope_builtin_pickers.lsp_references, "[G]oto [R]eferences")
       nmap("gh", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
 
-      nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")
+      -- nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")
       nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
       nmap("<leader>da", vim.diagnostic.open_float, "[D]i[A]gnostics")
       nmap("<leader>O", "<cmd>Lspsaga outline<CR>", "[O]utline toggle")

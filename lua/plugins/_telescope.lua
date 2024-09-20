@@ -69,6 +69,6 @@ vim.api.nvim_set_keymap(
 -- global search
 vim.api.nvim_set_keymap("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 -- resume prev search result
-vim.api.nvim_set_keymap("n", "<C-r>", ":Telescope resume<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>r", ":Telescope resume<CR>", { noremap = true, silent = true })
 
 return M
