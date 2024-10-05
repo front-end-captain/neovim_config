@@ -13,7 +13,7 @@ local spec = {
           return vim.o.columns * 0.4
         end
       end,
-      shell = os.getenv("OS") == "Windows_NT" and "powershell" or vim.o.shell,
+      shell = os.getenv("OS") == "Windows_NT" and "pwsh" or vim.o.shell,
       open_mapping = [[<c-\>]],
       insert_mappings = true,
       terminal_mappings = true,
