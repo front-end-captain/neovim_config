@@ -1,14 +1,14 @@
 -- load <project_root>/.vscode/settings.lua
 local local_config_loaded, local_config = pcall(require, "settings")
+local utils = require("utils")
 
 local M = {}
 local setDiagnosticSigns = function()
   local signs = {
-    -- 🆇 🅴 🆆 🅸 🅷 ⚠  ➤   ✘ 󰃃      
-    { name = "DiagnosticSignError", text = "🅴" },
-    { name = "DiagnosticSignWarn", text = "🆆" },
-    { name = "DiagnosticSignHint", text = "🅷" },
-    { name = "DiagnosticSignInfo", text = "🅸" },
+    { name = "DiagnosticSignError", text = utils.DiagnosticSign.error },
+    { name = "DiagnosticSignWarn", text = utils.DiagnosticSign.warn },
+    { name = "DiagnosticSignHint", text = utils.DiagnosticSign.hint },
+    { name = "DiagnosticSignInfo", text = utils.DiagnosticSign.info },
   }
   vim.diagnostic.config({
     virtual_text = false,

@@ -221,6 +221,18 @@ local function copy_file_path_to_clipboard(value, register)
   notify("Copied: " .. value, vim.log.levels.INFO, { title = "Neo-tree" })
 end
 
+local DiagnosticSign = {
+  -- ✘  🅴
+  error = "",
+  -- 🆆 ⚠
+  warn = "",
+  warning = "",
+  -- 🅷  󰃃
+  hint = "",
+  -- 🅸 
+  info = "",
+}
+
 M.path_separator = path_separator
 M.path_add_trailing = path_add_trailing
 M.path_relative = path_relative
@@ -228,5 +240,6 @@ M.get_host_os_home = get_host_os_home
 M.add_package_path = add_package_path
 M.edit_respect_winfixbuf = edit_respect_winfixbuf
 M.copy_file_path_to_clipboard = copy_file_path_to_clipboard
+M.DiagnosticSign = DiagnosticSign
 
 return M

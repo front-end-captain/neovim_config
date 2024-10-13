@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local M = {}
 
 local map = vim.api.nvim_set_keymap
@@ -33,7 +35,8 @@ local spec = {
 
           if context.buffer:current() then
             for e, n in pairs(diagnostics_dict) do
-              local sym = e == "error" and "🅴" or (e == "warning" and "🆆" or "🅷")
+              print("bufferline", e)
+              local sym = utils.DiagnosticSign[e]
               s = s .. n .. sym .. " "
             end
           end

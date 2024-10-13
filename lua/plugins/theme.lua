@@ -1,4 +1,4 @@
-local utils = require('utils')
+local utils = require("utils")
 
 local M = {}
 
@@ -36,34 +36,44 @@ vim.o.termguicolors = true
 
 vim.cmd([[highlight ColorColumn guibg=grey]])
 
+-- local vscode_theme = {
+--   "Mofiqul/vscode.nvim",
+--   config = function()
+--     local bg = find_background(wezterm_color_scheme_ok and wezterm_color_scheme or "")
+--     vim.o.background = bg
+--     local vscode = require("vscode")
+--     vscode.setup({
+--       style = bg,
+--       italic_comments = true,
+--     })
+--     vscode.load()
+--   end,
+-- }
+
 local vscode_theme = {
-  "Mofiqul/vscode.nvim",
+  "projekt0n/github-nvim-theme",
   config = function()
     local bg = find_background(wezterm_color_scheme_ok and wezterm_color_scheme or "")
     vim.o.background = bg
-    local vscode = require("vscode")
-    vscode.setup({
-      style = bg,
-      italic_comments = true,
-    })
-    vscode.load()
+    vim.cmd.colorscheme("github_" .. bg)
   end,
 }
 
 table.insert(M, vscode_theme)
 
-pcall(vim.cmd, "colorscheme " .. "vscode")
-
 local function change_scheme(args)
   local scheme = args.args
   local bg = find_background(scheme)
-
-  local vscode = require("vscode")
   vim.o.background = bg
-  vscode.setup({
-    style = bg,
-  })
-  vscode.load()
+
+  -- pcall(vim.cmd, "colorscheme " .. "github_" .. bg)
+  vim.cmd.colorscheme("github_" .. bg)
+
+  -- local vscode = require("vscode")
+  -- vscode.setup({
+  --   style = bg,
+  -- })
+  -- vscode.load()
 
   local file = io.open(wezterm_color_scheme_path, "w")
   if file then
