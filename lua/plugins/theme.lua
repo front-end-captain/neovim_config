@@ -36,44 +36,24 @@ vim.o.termguicolors = true
 
 vim.cmd([[highlight ColorColumn guibg=grey]])
 
--- local vscode_theme = {
---   "Mofiqul/vscode.nvim",
---   config = function()
---     local bg = find_background(wezterm_color_scheme_ok and wezterm_color_scheme or "")
---     vim.o.background = bg
---     local vscode = require("vscode")
---     vscode.setup({
---       style = bg,
---       italic_comments = true,
---     })
---     vscode.load()
---   end,
--- }
-
-local vscode_theme = {
-  "projekt0n/github-nvim-theme",
-  config = function()
-    local bg = find_background(wezterm_color_scheme_ok and wezterm_color_scheme or "")
-    vim.o.background = bg
-    vim.cmd.colorscheme("github_" .. bg)
-  end,
-}
-
-table.insert(M, vscode_theme)
-
-local function change_scheme(args)
-  local scheme = args.args
+local function setupTheme(scheme)
   local bg = find_background(scheme)
   vim.o.background = bg
 
-  -- pcall(vim.cmd, "colorscheme " .. "github_" .. bg)
-  vim.cmd.colorscheme("github_" .. bg)
+  local vscode = require("vscode")
+  vscode.setup({
+    style = bg,
+    italic_comments = true,
+  })
+  vscode.load()
 
-  -- local vscode = require("vscode")
-  -- vscode.setup({
-  --   style = bg,
-  -- })
-  -- vscode.load()
+  vim.cmd.colorscheme("vscode")
+end
+
+local function change_scheme(args)
+  local scheme = args.args
+
+  setupTheme(scheme)
 
   local file = io.open(wezterm_color_scheme_path, "w")
   if file then
@@ -88,5 +68,14 @@ vim.api.nvim_create_user_command("ChangeScheme", change_scheme, {
     return wezterm_color_scheme_names
   end,
 })
+
+local vscode_theme = {
+  "Mofiqul/vscode.nvim",
+  config = function()
+    setupTheme(wezterm_color_scheme_ok and wezterm_color_scheme or "")
+  end,
+}
+
+table.insert(M, vscode_theme)
 
 return M

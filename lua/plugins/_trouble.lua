@@ -1,3 +1,4 @@
+local utils = require("utils")
 local M = {}
 
 local spec = {
@@ -50,14 +51,7 @@ local spec = {
     auto_fold = false, -- automatically fold a file trouble list at creation
     auto_jump = { "lsp_definitions" }, -- for the given modes, automatically jump if there is only a single result
     include_declaration = { "lsp_references", "lsp_implementations", "lsp_definitions" }, -- for the given modes, include the declaration of the current symbol in the results
-    signs = {
-      -- icons / text used for a diagnostic
-      error = "🅴",
-      warning = "🆆",
-      hint = "🅷",
-      information = "🅸",
-      other = "",
-    },
+    signs = utils.DiagnosticSign,
     use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
   },
 }

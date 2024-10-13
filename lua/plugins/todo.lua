@@ -69,6 +69,6 @@ local spec = {
 }
 table.insert(M, spec)
 
-vim.api.nvim_set_keymap("n", "<leader>tt", ":TodoTrouble<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tt", ":TodoTelescope<CR>", { noremap = true, silent = true })
 
 return M

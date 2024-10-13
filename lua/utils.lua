@@ -231,6 +231,8 @@ local DiagnosticSign = {
   hint = "",
   -- 🅸 
   info = "",
+  information = "",
+  other = "?",
 }
 
 M.path_separator = path_separator
