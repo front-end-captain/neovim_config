@@ -35,7 +35,6 @@ local spec = {
 
           if context.buffer:current() then
             for e, n in pairs(diagnostics_dict) do
-              print("bufferline", e)
               local sym = utils.DiagnosticSign[e]
               s = s .. n .. sym .. " "
             end
