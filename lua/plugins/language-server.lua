@@ -150,15 +150,15 @@ local spec = {
           nodePath = local_config_loaded and local_config.eslint.nodePath or "node_modules",
         },
       },
-      tsserver = {
+      ts_ls = {
         on_attach = on_attach,
         capabilities = capabilities,
-        settings = {
-          maxTsServerMemory = 10240,
-        },
-        flags = {
-          debounce_text_changes = 150,
-        },
+        -- settings = {
+        --   maxTsServerMemory = 10240,
+        -- },
+        -- flags = {
+        --   debounce_text_changes = 150,
+        -- },
         init_options = {
           hostInfo = "neovim",
           preferences = {
