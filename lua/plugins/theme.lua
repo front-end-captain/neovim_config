@@ -40,14 +40,15 @@ local function setupTheme(scheme)
   local bg = find_background(scheme)
   vim.o.background = bg
 
-  local vscode = require("vscode")
-  vscode.setup({
-    style = bg,
-    italic_comments = true,
-  })
-  vscode.load()
+  -- local vscode = require("vscode")
+  -- vscode.setup({
+  --   style = bg,
+  --   italic_comments = true,
+  -- })
+  -- vscode.load()
+  -- vim.cmd.colorscheme("vscode")
 
-  vim.cmd.colorscheme("vscode")
+  vim.cmd.colorscheme("oxocarbon")
 end
 
 local function change_scheme(args)
@@ -75,7 +76,11 @@ local vscode_theme = {
     setupTheme(wezterm_color_scheme_ok and wezterm_color_scheme or "")
   end,
 }
+local oxocarbon_theme = {
+  "nyoom-engineering/oxocarbon.nvim",
+}
 
 table.insert(M, vscode_theme)
+table.insert(M, oxocarbon_theme)
 
 return M
