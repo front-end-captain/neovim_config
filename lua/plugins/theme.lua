@@ -48,7 +48,10 @@ local function setupTheme(scheme)
   -- vscode.load()
   -- vim.cmd.colorscheme("vscode")
 
-  vim.cmd.colorscheme("oxocarbon")
+  vim.g.sonokai_enable_italic = true
+  vim.g.sonokai_style = "espresso" -- atlantis andromeda shusia maia espresso
+  vim.g.sonokai_better_performance = 1
+  vim.cmd.colorscheme("sonokai")
 end
 
 local function change_scheme(args)
@@ -79,8 +82,14 @@ local vscode_theme = {
 local oxocarbon_theme = {
   "nyoom-engineering/oxocarbon.nvim",
 }
+local sonokai_theme = {
+  "sainnhe/sonokai",
+  config = function()
+    setupTheme(wezterm_color_scheme_ok and wezterm_color_scheme or "")
+  end,
+}
 
 table.insert(M, vscode_theme)
-table.insert(M, oxocarbon_theme)
+table.insert(M, sonokai_theme)
 
 return M

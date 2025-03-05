@@ -223,15 +223,15 @@ end
 
 local DiagnosticSign = {
   -- ✘  🅴
-  error = "",
+  error = "🅴",
   -- 🆆 ⚠
-  warn = "",
-  warning = "",
+  warn = "🆆",
+  warning = "🆆",
   -- 🅷  󰃃
-  hint = "",
+  hint = "🅷",
   -- 🅸 
-  info = "",
-  information = "",
+  info = "🅸",
+  information = "🅸",
   other = "?",
 }
 

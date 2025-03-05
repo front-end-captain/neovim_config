@@ -3,6 +3,7 @@ local spec = {
   "hrsh7th/nvim-cmp",
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {
+    "onsails/lspkind.nvim",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -79,10 +80,14 @@ local spec = {
       formatting = {
         format = lspkind.cmp_format({
           mode = "symbol_text",
-
-          maxwidth = 50,
+          maxwidth = {
+            menu = 50,
+            abbr = 50,
+          },
+          ellipsis_char = "...",
+          show_labelDetails = true,
           before = function(entry, vim_item)
-            vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+            vim_item.menu = "🔨" .. string.upper(entry.source.name)
             return vim_item
           end,
         }),
@@ -90,5 +95,7 @@ local spec = {
     })
   end,
 }
+
 table.insert(M, spec)
+
 return M
