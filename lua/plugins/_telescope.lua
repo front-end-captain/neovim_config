@@ -11,6 +11,7 @@ local spec = {
   },
   config = function()
     local telescope = require("telescope")
+    local telescope_builtin_pickers = require("telescope.builtin")
     telescope.setup({
       defaults = {
         initial_mode = "insert",
@@ -26,6 +27,7 @@ local spec = {
           },
           n = {
             ["<CR>"] = utils.edit_respect_winfixbuf,
+            ["P"] = "select_default",
             ["p"] = function(prompt_bufnr)
               local actions_state = require("telescope.actions.state")
               local current_picker = actions_state.get_current_picker(prompt_bufnr)
@@ -55,6 +57,14 @@ local spec = {
     })
     pcall(telescope.load_extension, "notify")
     pcall(telescope.load_extension, "live_grep_args")
+
+    vim.keymap.set(
+      "n",
+      "<leader>lr",
+      telescope_builtin_pickers.registers,
+      { desc = "Telescope list registers" }
+    )
+
   end,
 }
 
@@ -69,6 +79,11 @@ vim.api.nvim_set_keymap(
 -- global search
 vim.api.nvim_set_keymap("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 -- resume prev search result
-vim.api.nvim_set_keymap("n", "<leader>r", ":Telescope resume<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>r",
+  ":Telescope resume<CR>",
+  { noremap = true, silent = true }
+)
 
 return M

@@ -114,6 +114,9 @@ vim.o.showtabline = 2
 -- 使用增强状态栏插件后不再需要 vim 的模式提示
 vim.o.showmode = false
 
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
+
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd([[
   augroup highlight_yank
