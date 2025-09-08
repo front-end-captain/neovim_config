@@ -12,8 +12,6 @@ local disable_tools = {
   "create_dir",
   "rename_dir",
 }
-local max_completion_tokens = 32768
-local provider = "openai"
 
 local M = {}
 local spec = {
@@ -23,23 +21,32 @@ local spec = {
   lazy = false,
   version = false,
   opts = {
-    provider = provider,
-    -- auto_suggestions_provider = provider,
-    cursor_applying_provider = provider,
-    disable_tools = disable_tools,
-    -- claude = {
-    --   api_key_name = "COMPANY_AI_API_KEY",
-    --   endpoint = os.getenv("COMPANY_AI_ENDPOINT"),
-    --   model = "anthropic.claude-3.7-sonnet",
-    --   disable_tools = disable_tools,
-    -- },
-    openai = {
-      api_key_name = "COMPANY_AI_API_KEY",
-      endpoint = os.getenv("COMPANY_AI_ENDPOINT"),
-      model = "gpt-4o-mini",
-      disable_tools = disable_tools,
-    },
-    vendors = {
+    debug = true,
+    provider = "moonshot",
+    -- auto_suggestions_provider = "morph",
+    providers = {
+      openai = {
+        api_key_name = "COMPANY_AI_API_KEY",
+        endpoint = os.getenv("COMPANY_AI_ENDPOINT"),
+        model = "gpt-4o-mini",
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 20480,
+        },
+      },
+      moonshot = {
+        endpoint = "https://api.moonshot.cn/v1",
+        model = "kimi-k2-0711-preview",
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 32768,
+        },
+      },
+      morph = {
+        model = "morph-v3-large",
+      },
       groq = {
         __inherited_from = "openai",
         api_key_name = "GROQ_API_KEY",
@@ -47,16 +54,17 @@ local spec = {
         model = "llama-3.3-70b-versatile",
       },
     },
+    -- disable_tools = disable_tools,
     behaviour = {
-      auto_suggestions = false,
+      auto_suggestions = false, -- Experimental stage
       auto_set_highlight_group = true,
       auto_set_keymaps = true,
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = false,
-      minimize_diff = false, -- Whether to remove unchanged lines when applying a code block
+      minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
       enable_token_counting = true, -- Whether to enable token counting. Default to true.
-      enable_cursor_planning_mode = true, -- Whether to enable Cursor Planning Mode. Default to false.
-      enable_claude_text_editor_tool_mode = false, -- Whether to enable Claude Text Editor Tool Mode.
+      auto_approve_tool_permissions = false, -- Default: show permission prompts for all tools
+      enable_fastapply = true, -- Enable Fast Apply feature
     },
     -- suggestion = {
     --   debounce = 200, -- Default is 600
