@@ -117,6 +117,10 @@ vim.o.showmode = false
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
 
+vim.o.termguicolors = true
+
+vim.cmd([[highlight ColorColumn guibg=grey]])
+
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd([[
   augroup highlight_yank

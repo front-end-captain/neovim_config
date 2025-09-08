@@ -1,30 +1,5 @@
 local utils = require("utils")
 
-local function extract_color_scheme_names(colorschemes)
-  local names = {}
-
-  for _, item in ipairs(colorschemes) do
-    if type(item) == "table" and item.name then
-      table.insert(names, item.name)
-    end
-  end
-
-  return names
-end
-
-local M = {
-  { "Mofiqul/vscode.nvim" },
-  { "nyoom-engineering/oxocarbon.nvim" },
-  { "sainnhe/sonokai" },
-  { "folke/tokyonight.nvim" },
-  { "marko-cerovac/material.nvim" },
-  { "sainnhe/edge" },
-  { "sainnhe/gruvbox-material" },
-  { "0xstepit/flow.nvim" },
-  { "scottmckendry/cyberdream.nvim" },
-  -- { "" },
-}
-
 local DEFAULT_BACKGROUND = "dark"
 local DEFAULT_nvim_color_scheme = "vscode"
 
@@ -55,16 +30,39 @@ local function find_background(current_scheme)
   return background
 end
 
+local function extract_color_scheme_names(colorschemes)
+  local names = {}
+
+  for _, item in ipairs(colorschemes) do
+    if type(item) == "table" and item.name then
+      table.insert(names, item.name)
+    end
+  end
+
+  return names
+end
+
+local M = {
+  { "Mofiqul/vscode.nvim" },
+  { "nyoom-engineering/oxocarbon.nvim" },
+  { "sainnhe/sonokai" },
+  { "folke/tokyonight.nvim" },
+  { "marko-cerovac/material.nvim" },
+  { "sainnhe/edge" },
+  { "sainnhe/gruvbox-material" },
+  { "0xstepit/flow.nvim" },
+  -- { "" },
+}
+
 local colorschemes = {
   {
     name = "vscode",
-    callback = function()
+    callback = function(theme)
       local vscode = require("vscode")
       vscode.setup({
-        style = bg,
         italic_comments = true,
       })
-      vscode.load()
+      vscode.load(theme)
     end,
   },
   {
@@ -86,9 +84,13 @@ local colorschemes = {
   },
   {
     name = "material",
-    callback = function()
-      -- darker lighter oceanic palenight
-      vim.g.material_style = "palenight"
+    callback = function(theme)
+      if theme == "light" then
+        vim.g.material_style = "lighter"
+      else
+        -- darker oceanic palenight
+        vim.g.material_style = "palenight"
+      end
     end,
   },
   {
@@ -100,10 +102,10 @@ local colorschemes = {
   },
   {
     name = "flow",
-    callback = function()
+    callback = function(theme)
       require("flow").setup({
         theme = {
-          style = "dark", --  "dark" | "light"
+          style = theme, --  "dark" | "light"
           contrast = "default",
           transparent = true,
         },
@@ -122,14 +124,7 @@ local colorschemes = {
       })
     end,
   },
-  {
-    name = "cyberdream",
-  },
 }
-
-vim.o.termguicolors = true
-
-vim.cmd([[highlight ColorColumn guibg=grey]])
 
 local function find_callback_by_name(schemes, target_name)
   for _, item in ipairs(schemes) do
@@ -149,12 +144,12 @@ local nvim_color_scheme_path = os.getenv("HOME")
     utils.path_separator
   )
 
-local function setupTheme(args)
+local function setup_color_scheme(args)
   local theme = args.args
 
   local callback = find_callback_by_name(colorschemes, theme)
   if callback then
-    callback()
+    callback(vim.o.background)
   end
 
   vim.cmd.colorscheme(theme)
@@ -188,7 +183,7 @@ vim.api.nvim_create_user_command("ChangeScheme", change_wezterm_scheme, {
     return wezterm_color_scheme_names
   end,
 })
-vim.api.nvim_create_user_command("ColorScheme", setupTheme, {
+vim.api.nvim_create_user_command("ColorScheme", setup_color_scheme, {
   nargs = 1,
   complete = function()
     local names = extract_color_scheme_names(colorschemes)
@@ -214,7 +209,7 @@ vim.api.nvim_create_autocmd("User", {
     if nvim_color_scheme_ok then
       local callback = find_callback_by_name(colorschemes, nvim_color_scheme)
       if callback then
-        callback()
+        callback(vim.o.background)
       end
     end
 
