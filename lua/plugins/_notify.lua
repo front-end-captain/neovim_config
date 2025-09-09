@@ -52,6 +52,9 @@ local function notifyLSP()
     local client_id = ctx.client_id
     local client_name = vim.lsp.get_client_by_id(client_id).name
 
+    if client_name == "none-ls" then
+      return
+    end
     if client_name == "null-ls" then
       return
     end
