@@ -6,16 +6,9 @@
 
 ### prerequisite
 
-1. Install Glow
+1. Install
 ```shell
-# Macos
-brew install glow
 
-# Ubuntu
-apt install glow
-
-# Windows11
-scoop install glow
 ```
 
 ### startup
@@ -56,24 +49,12 @@ return {
     background = "dark",
   },
   {
-    name = "seoulbones_dark",
-    background = "dark",
-  },
-  {
     name = "Everforest Dark (Gogh)",
     background = "dark",
   },
   {
-    name = "Atelier Savanna Light (base16)",
-    background = "light",
-  },
-  {
     name = "Vs Code Light+ (Gogh)",
     background = "light",
-  },
-  {
-    name = "Atelier Forest Light (base16)",
-    background = "light",
-  },
+  }
 }
 ```

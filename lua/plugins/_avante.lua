@@ -85,15 +85,15 @@ local spec = {
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        -- file_types = { "markdown", "Avante" },
-        file_types = { "Avante" },
-      },
-      ft = { "Avante" },
-    },
+    -- {
+    --   -- Make sure to set this up properly if you have lazy=true
+    --   "MeanderingProgrammer/render-markdown.nvim",
+    --   opts = {
+    --     -- file_types = { "markdown", "Avante" },
+    --     file_types = { "Avante" },
+    --   },
+    --   ft = { "Avante" },
+    -- },
   },
 }
 

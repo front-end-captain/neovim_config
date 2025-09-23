@@ -45,12 +45,12 @@ end
 local M = {
   { "Mofiqul/vscode.nvim" },
   { "nyoom-engineering/oxocarbon.nvim" },
-  { "sainnhe/sonokai" },
   { "folke/tokyonight.nvim" },
   { "marko-cerovac/material.nvim" },
   { "sainnhe/edge" },
   { "sainnhe/gruvbox-material" },
   { "0xstepit/flow.nvim" },
+  { "rebelot/kanagawa.nvim" },
   -- { "" },
 }
 
@@ -63,14 +63,6 @@ local colorschemes = {
         italic_comments = true,
       })
       vscode.load(theme)
-    end,
-  },
-  {
-    name = "sonokai",
-    callback = function()
-      vim.g.sonokai_enable_italic = true
-      vim.g.sonokai_style = "espresso" -- atlantis andromeda shusia maia espresso
-      vim.g.sonokai_better_performance = 1
     end,
   },
   {
@@ -96,6 +88,7 @@ local colorschemes = {
   {
     name = "gruvbox-material",
     callback = function()
+      vim.g.gruvbox_material_foreground = "mix" -- material mix original
       vim.g.gruvbox_material_background = "soft"
       vim.g.gruvbox_material_better_performance = 1
     end,
@@ -106,20 +99,22 @@ local colorschemes = {
       require("flow").setup({
         theme = {
           style = theme, --  "dark" | "light"
-          contrast = "default",
           transparent = true,
         },
         colors = {
-          mode = "default", -- "default" | "dark" | "light"
-          fluo = "pink", -- "pink" | "cyan" | "yellow" | "orange" | "green"
-          custom = {
-            saturation = "", -- "" | string representing an integer between 0 and 100
-            light = "", -- "" | string representing an integer between 0 and 100
-          },
+          mode = theme, -- "default" | "dark" | "light"
+          fluo = "orange", -- "pink" | "cyan" | "yellow" | "orange" | "green"
         },
-        ui = {
-          borders = "inverse", -- "theme" | "inverse" | "fluo" | "none"
-          aggressive_spell = false, -- true | false
+      })
+    end,
+  },
+  {
+    name = "kanagawa",
+    callback = function()
+      require("kanagawa").setup({
+        background = { -- map the value of 'background' option to a theme
+          dark = "dragon", -- dragon | wave
+          light = "lotus",
         },
       })
     end,
