@@ -17,6 +17,7 @@ local function findKeywordInCurrentFolder(state)
     default_text = string.gsub(default_text, "[\r\n]+", "")
 
     lga.live_grep_args({
+      theme = 'ivy',
       results_title = relative .. "/",
       cwd = node:get_id(),
       default_text = default_text or "",
