@@ -20,6 +20,15 @@
           "typescript"
         ],
         "path": "./javascript/unit-test.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "typescript",
+          "typescriptreact",
+          "javascriptreact"
+        ],
+        "path": "./javascript/func.json"
       }
     ]
   }

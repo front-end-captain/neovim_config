@@ -1,0 +1,11 @@
+{
+  "constant.ArrowFunction.Type": {
+    "prefix": "af",
+    "body": [
+      "const ${1:name} = ($2) : ${3|string,number,boolean,custom|} => {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Constant Arrow function (explicit return type)"
+  }
+}
