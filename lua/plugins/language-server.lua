@@ -169,6 +169,7 @@ local spec = {
             includeInlayPropertyDeclarationTypeHints = true,
             includeInlayFunctionLikeReturnTypeHints = true,
             includeInlayEnumMemberValueHints = true,
+            disableSuggestions = true,
           },
         },
       },
@@ -208,7 +209,6 @@ local spec = {
     setDiagnosticSigns()
   end,
 }
-
 
 table.insert(M, spec)
 return M
