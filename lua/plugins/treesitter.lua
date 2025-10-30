@@ -84,10 +84,4 @@ local spec = {
 
 table.insert(M, spec)
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 99
-vim.api.nvim_set_keymap("n", "zz", ":foldclose<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "Z", ":foldopen<CR>", { noremap = true, silent = true })
-
 return M

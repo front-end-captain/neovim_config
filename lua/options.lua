@@ -61,13 +61,6 @@ vim.bo.autoread = true
 -- 禁止折行
 vim.wo.wrap = false
 
--- enable fold
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- 默认不要折叠
--- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
--- vim.opt.foldlevel = 99
-
 -- 光标在行首尾时<Left><Right>可以跳到下一行
 vim.o.whichwrap = "<,>,[,]"
 
