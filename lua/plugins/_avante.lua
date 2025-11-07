@@ -21,7 +21,7 @@ local spec = {
   lazy = false,
   version = false,
   opts = {
-    -- debug = true,
+    debug = true,
     provider = "moonshot",
     -- auto_suggestions_provider = "morph",
     providers = {
@@ -45,7 +45,7 @@ local spec = {
         },
       },
       morph = {
-        model = "morph-v3-large",
+        model = "morph-v3-large", -- morph-v3-fast
       },
       groq = {
         __inherited_from = "openai",
