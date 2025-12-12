@@ -58,3 +58,8 @@ return {
   }
 }
 ```
+
+## lua-language-server
+```
+MasonInstall lua-language-server@3.15.0
+```

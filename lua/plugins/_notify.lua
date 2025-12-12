@@ -3,9 +3,9 @@ local M = {}
 local function notifyLSP()
   local client_notifs = {}
   vim.cmd([[
-  highlight NotifyINFOTitle guifg=#79b949
-  highlight NotifyINFOIcon guifg=#79b949
-]])
+    highlight NotifyINFOTitle guifg=#79b949
+    highlight NotifyINFOIcon guifg=#79b949
+  ]])
 
   local notify = require("notify")
   local function get_notif_data(client_id, token)
