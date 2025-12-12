@@ -61,7 +61,8 @@ local spec = {
     "b0o/schemastore.nvim",
   },
   config = function()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
     local lsp_signature = require("lsp_signature")
     local telescope_builtin_pickers = require("telescope.builtin")
     local telescope_builtin_picker_opts = {
@@ -199,6 +200,8 @@ local spec = {
     require("mason").setup()
 
     require("mason-lspconfig").setup({
+      automatic_installation = false,
+      automatic_enable = false,
       ensure_installed = vim.tbl_keys(servers),
       handlers = {
         function(server_name)
