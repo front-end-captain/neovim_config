@@ -172,7 +172,7 @@ local function change_wezterm_scheme(args)
   end
 end
 
-vim.api.nvim_create_user_command("ChangeScheme", change_wezterm_scheme, {
+vim.api.nvim_create_user_command("SwitchWeztermColor", change_wezterm_scheme, {
   nargs = 1,
   complete = function()
     return wezterm_color_scheme_names

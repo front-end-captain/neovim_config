@@ -11,6 +11,7 @@ local spec = {
   },
   config = function()
     local telescope = require("telescope")
+    local builtin = require("telescope.builtin")
     local telescope_builtin_pickers = require("telescope.builtin")
     telescope.setup({
       defaults = {
@@ -53,6 +54,9 @@ local spec = {
             end,
           },
         },
+        find_files = {
+          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+        },
       },
     })
     pcall(telescope.load_extension, "notify")
@@ -65,25 +69,21 @@ local spec = {
       { desc = "Telescope list registers" }
     )
 
+    -- find file
+    vim.keymap.set(
+      "n",
+      "<C-f>",
+      builtin.find_files,
+      { noremap = true, silent = true, desc = "Telescope find files" }
+    )
+    -- global search
+    vim.keymap.set("n", "<C-g>", builtin.live_grep, { noremap = true, silent = true })
+
+    -- resume prev search result
+    vim.keymap.set("n", "<leader>r", builtin.resume, { noremap = true, silent = true })
   end,
 }
 
 table.insert(M, spec)
--- find file
-vim.api.nvim_set_keymap(
-  "n",
-  "<C-f>",
-  ":Telescope find_files<CR>",
-  { noremap = true, silent = true }
-)
--- global search
-vim.api.nvim_set_keymap("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
--- resume prev search result
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>r",
-  ":Telescope resume<CR>",
-  { noremap = true, silent = true }
-)
 
 return M

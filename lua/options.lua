@@ -112,6 +112,9 @@ vim.opt.laststatus = 3
 
 vim.o.termguicolors = true
 
+-- avoid very slow redrawing for an XML file that is one long line
+vim.o.synmaxcol = 500
+
 vim.cmd([[highlight ColorColumn guibg=grey]])
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
