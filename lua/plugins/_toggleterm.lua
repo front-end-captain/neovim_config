@@ -30,6 +30,12 @@ vim.api.nvim_set_keymap(
   ":ToggleTerm direction=vertical<CR>",
   { noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>N",
+  ":TermNew<CR>",
+  { noremap = true, silent = true }
+)
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
