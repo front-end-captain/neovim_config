@@ -1,0 +1,4 @@
+{
+  "diagnostics.disable": ["param-type-mismatch"]
+}
+

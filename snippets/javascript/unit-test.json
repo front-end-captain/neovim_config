@@ -1,0 +1,15 @@
+{
+  "vitest": {
+    "prefix": "vitest",
+    "body": [
+      "import { describe, test, expect } from \"vitest\";",
+      "",
+      "describe(\"${1:describe}\", () => {",
+      "  test(\"${1:test}\", () => {",
+      "    expect().toEqual();",
+      "  });",
+      "});"
+    ],
+    "description": "vitest"
+  }
+}

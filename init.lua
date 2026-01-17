@@ -100,3 +100,5 @@ require("config").setup()
 
 -- vim.print(vim.glob.to_lpeg('foo/*'):match('foo/bar.lua'))
 -- vim.print(vim.glob.to_lpeg('foo/*'):match('bar/bar.lua'))
+
+

@@ -1,12 +1,14 @@
 # Neovim Config
+
 ## Commands(lua 命令)
+
 形如 `:lua {chunk}` `:luado {chunk}` 这样的命令在neovim中会被作为 lua 代码块被执行
 形如 `:luafile {filename}` 这样的命令在neovim中会被作为 lua 文件块被执行
-
 
 ## IMPORTING LUA MODULES(导入lua模块)
 
 neovim 默认情况下从 `runtimepath` 和 `package.path` 这些目录下查找模块
+
 ```shell
 :lua vim.print(package.path)
 :lua vim.print(vim.opt.runtimepath)
@@ -15,6 +17,7 @@ neovim 默认情况下从 `runtimepath` 和 `package.path` 这些目录下查找
 ## Vimscript v:lua interface(vim脚本中的lua接口)
 
 在 neovim 可以用 vim 脚本作为配置文件，在vim脚本配置文件中可以通过 v:lua 访问lua变量、函数等
+
 ```vimscript
 call v:lua.func(arg1, arg2)
 ```
@@ -50,24 +53,31 @@ end))
 neovim lua 提供了一个接口可以去访问 vimscript 中的变量、函数和编辑器命令等
 
 #### vim.fn.{func}({...})
+
 比如，调用 vimscript 提供的‘删除数组指定位置的元素’方法:
+
 ```lua
 local list = { 1, 2, 3 }
 local removedItem = vim.fn.remove(list, 1)
 vim.print(list) -- { 1, 2, 3 }
 vim.print(removedItem) -- 2
 ```
+
 vimscript 提供的函数清单可以在这里看到[function-list](https://neovim.io/doc/user/usr_41.html#function-list)
 
 #### vim.cmd({command})
+
 执行 vimscript(ex-commands), 比如：
+
 ```lua
 vim.cmd('echo 42') -- 输出 42
 vim.cmd('write! foo.txt') -- 保存文件
 ```
 
 #### vim-variables
+
 访问 vim 编辑器中各个作用域的变量：
+
 ```lua
 vim.g.foo -- global
 vim.b.foo -- buffer
@@ -76,6 +86,7 @@ vim.t.foo -- tabpage
 ```
 
 设置和访问 vim 的配置项：
+
 ```lua
 vim.o.number = true -- like `set number` in vimscript
 vim.bo.number = true -- enable column number on buffer-scoped
@@ -88,9 +99,10 @@ vim.wo.number = true -- enable column number on widnow-scoped
 
 lua 中的 table 可以被用作字典(dict)和列表(list)，但是在 neovim lua 中：
 符合以下条件被定义为 lua-list:
+
 - 空的 table。可以使用 `vim.empty_dict()` 判断是否是空的table
 - table 中的 key 是连续的从1开始的整数且没有 NIL。可以使用 `vim.islist` 判断
-符合以下条件被定义为 lua-dict:
+  符合以下条件被定义为 lua-dict:
 - table 的 key 是字符串
 
 #### base64
@@ -105,6 +117,7 @@ vim.print(vim.base64.decode(vim.base64.encode("foo")))
 #### filetype
 
 可以通过文件名称、文件路径、文件扩展名添加一个文件类型:
+
 ```lua
 vim.filetype.add({
   filename = {
@@ -112,8 +125,10 @@ vim.filetype.add({
   },
 })
 ```
+
 当打开 .foorc 时，通过 :set ft? 可以看到该文件的类型是 toml
 或者通过 `vim.filetype.match` 查看：
+
 ```lua
 local bufnr = vim.api.nvim_get_current_buf()
 vim.print(vim.filetype.match({ buf = bufnr })) -- toml
@@ -122,6 +137,7 @@ vim.print(vim.filetype.match({ buf = bufnr })) -- toml
 #### fs
 
 文件访问和操作
+
 ```lua
 vim.print(vim.uv.fs_stat('.foorc')) -- 返回文件状态
 vim.fs.rm('.foorc') -- 删除文件
@@ -130,16 +146,14 @@ vim.fs.abspath('.foorc') -- 返回绝对路径
 
 #### glob & lpeg
 
-
-
 #### json
 
 json的编码和解码
+
 ```lua
 vim.print(vim.json.encode({ foo = "foo" }))
 vim.print(vim.json.decode('{ "foo": "foo" }'))
 ```
-
 
 #### keymap
 
@@ -157,6 +171,7 @@ vim.keymap.set({'n', 'v'}, 'X', function() vim.print(tostring(vim.api.nvim_get_c
 #### loader
 
 lua 模块加载器，常用于在 lazy.nvim 启用插件懒加载
+
 ```lua
 vim.loader.enable(true)
 ```
@@ -166,6 +181,7 @@ vim.loader.enable(true)
 #### uri
 
 uri的编码和解码
+
 ```lua
 vim.print(vim.uri_encode("https://www.baidu.com?foo=bar"))
 vim.print(vim.uri_decode(vim.uri_encode("https://www.baidu.com?foo=bar")))
@@ -174,6 +190,7 @@ vim.print(vim.uri_decode(vim.uri_encode("https://www.baidu.com?foo=bar")))
 #### version-range
 
 语义化版本号的解析和比较
+
 ```lua
 local parsedVersion = vim.version.parse('1.1.1-rc1+build.2')
 vim.print(parsedVersion) -- { major = 1, minor = 1, patch = 1, prerelease = 'rc1', build = 'build.2'}
@@ -186,10 +203,10 @@ vim.print(vim.version.cmp({ 1, 0, 3 }, { 1, 0, 4 })) -- -1
 
 更多关于语义化版本号的API见[version-range](https://neovim.io/doc/user/lua.html#version-range)
 
-
 ## Autocmd(Event Handler) 事件订阅
 
 订阅neovim内置事件
+
 ```lua
 local group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -201,6 +218,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 ```
 
 订阅自定义事件
+
 ```lua
 local group = vim.api.nvim_create_augroup("GroupName", { clear = true })
 vim.api.nvim_create_autocmd("EventType", {
@@ -292,4 +310,24 @@ vim.api.nvim_exec_autocmds("EventType", { pattern = "EventName" })
 │   │   ├── autocmds.lua # auto commands
 │   └── foo
 └── init.lua
+```
+
+# Install Rust Tool
+
+```shelll
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source " $ HOME/.cargo/env"
+```
+
+# Install TreeSitter
+
+```shelll
+git clone https://github.com/tree-sitter/tree-sitter.git
+cd tree-sitter
+
+cargo build --release
+
+sudo cp target/release/tree-sitter /usr/local/bin/
+
+tree-sitter --version
 ```
