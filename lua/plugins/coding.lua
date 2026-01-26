@@ -131,7 +131,7 @@ return {
               return vim.fn.getcmdtype() == ":"
             end,
           },
-          -- ghost_text = { enabled = true },
+          ghost_text = { enabled = true },
         },
       },
 

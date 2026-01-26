@@ -1,4 +1,5 @@
 local help = require("help")
+local telescope_builtin = require("telescope.builtin")
 
 local ensure_installed = {}
 
@@ -6,7 +7,8 @@ local public_keys = {
   { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
   {
     "gd",
-    vim.lsp.buf.definition,
+    -- vim.lsp.buf.definition,
+    telescope_builtin.lsp_definitions,
     desc = "Goto Definition",
     has = "definition",
   },

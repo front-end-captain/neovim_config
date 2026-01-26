@@ -272,26 +272,25 @@ return {
           find_files = {
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
           },
+          lsp_definitions = {
+            theme = "cursor",
+            initial_mode = "normal",
+            layout_strategy = "flex",
+            layout_config = {
+              width = 0.8,
+            },
+          },
         },
       }
     end,
     config = function(_, opts)
       local telescope = require("telescope")
       local builtin = require("telescope.builtin")
-      local telescope_builtin_pickers = require("telescope.builtin")
 
       telescope.setup(opts)
 
-      -- pcall(telescope.load_extension, "notify")
       pcall(telescope.load_extension, "live_grep_args")
       pcall(telescope.load_extension, "yank_history")
-
-      vim.keymap.set(
-        "n",
-        "<leader>lr",
-        telescope_builtin_pickers.registers,
-        { desc = "Telescope list registers" }
-      )
 
       -- find file
       vim.keymap.set(
@@ -300,15 +299,17 @@ return {
         builtin.find_files,
         { noremap = true, silent = true, desc = "Telescope find files" }
       )
+      -- recent opened files
+      vim.keymap.set("n", "<leader>F", function()
+        builtin.oldfiles({ only_cwd = true })
+      end, { noremap = true, silent = true })
       -- global search
       vim.keymap.set("n", "<C-g>", builtin.live_grep, { noremap = true, silent = true })
 
       -- resume prev search result
       vim.keymap.set("n", "<leader>r", builtin.resume, { noremap = true, silent = true })
 
-      -- builtin.command_history
       vim.keymap.set("n", "<leader>ch", builtin.command_history, { noremap = true, silent = true })
-      -- builtin.search_history
       vim.keymap.set("n", "<leader>sh", builtin.search_history, { noremap = true, silent = true })
     end,
   },
