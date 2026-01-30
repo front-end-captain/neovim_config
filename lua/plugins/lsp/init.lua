@@ -75,18 +75,6 @@ return {
         underline = true,
         update_in_insert = true,
         virtual_text = false,
-        -- virtual_text = {
-        --   spacing = 4,
-        --   source = "if_many",
-        --   prefix = function(diagnostic)
-        --     for d, icon in pairs(help.Diagnostic_Icon) do
-        --       if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-        --         return icon
-        --       end
-        --     end
-        --     return "●"
-        --   end,
-        -- },
         severity_sort = true,
         signs = {
           text = {

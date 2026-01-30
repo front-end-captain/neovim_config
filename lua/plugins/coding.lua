@@ -136,8 +136,13 @@ return {
       },
 
       keymap = {
-        preset = "enter",
-        ["<C-y>"] = { "select_and_accept" },
+        preset = "super-tab",
+        ["<Tab>"] = {
+          function(cmp)
+            return vim.lsp.inline_completion.get()
+          end,
+          "fallback",
+        },
       },
     },
     ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
