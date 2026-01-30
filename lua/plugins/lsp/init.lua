@@ -7,8 +7,9 @@ local public_keys = {
   { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
   {
     "gd",
-    -- vim.lsp.buf.definition,
-    telescope_builtin.lsp_definitions,
+    function()
+      telescope_builtin.lsp_definitions({ reuse_win = true })
+    end,
     desc = "Goto Definition",
     has = "definition",
   },

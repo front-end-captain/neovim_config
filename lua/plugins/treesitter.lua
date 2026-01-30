@@ -73,4 +73,14 @@ return {
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     opts = {},
   },
+
+  -- Show context of the current function
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" }, -- LazyFile
+    opts = {
+      mode = "cursor",
+      max_lines = 3,
+    },
+  },
 }

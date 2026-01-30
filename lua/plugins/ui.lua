@@ -137,7 +137,6 @@ return {
   -- manage buffers
   {
     "akinsho/bufferline.nvim",
-    -- enabled = false,
     event = "VeryLazy",
     dependencies = {
       "famiu/bufdelete.nvim",
@@ -154,7 +153,6 @@ return {
       options = {
         close_command = "bdelete! %d",
         diagnostics = "nvim_lsp",
-        -- 'slant' | 'padded_slant' | 'thick' | 'thin' | 'slope' | 'padded_slope'
         separator_style = "thin",
         always_show_bufferline = true,
         show_buffer_close_icons = false,
@@ -166,26 +164,6 @@ return {
             text = "File Explorer",
             highlight = "Directory",
             text_align = "left",
-          },
-        },
-        highlights = {
-          buffer_selected = {
-            bold = true,
-            italic = true,
-          },
-          warning_selected = {
-            fg = "NONE",
-            bg = "NONE",
-            sp = "NONE",
-            bold = true,
-            italic = true,
-          },
-          error_selected = {
-            fg = "NONE",
-            bg = "NONE",
-            sp = "NONE",
-            bold = true,
-            italic = true,
           },
         },
       },
@@ -235,8 +213,8 @@ return {
     end,
     opts = function()
       -- PERF: we don't need this lualine require madness 🤷
-      local lualine_require = require("lualine_require")
-      lualine_require.require = require
+      -- local lualine_require = require("lualine_require")
+      -- lualine_require.require = require
 
       vim.o.laststatus = vim.g.lualine_laststatus
 
@@ -261,12 +239,6 @@ return {
             {
               "diagnostics",
               symbols = { error = "E", warn = "W", info = "I", hint = "H" },
-              -- symbols = {
-              --   error = help.Diagnostic_Icon.error,
-              --   warn = help.Diagnostic_Icon.warn,
-              --   info = help.Diagnostic_Icon.info,
-              --   hint = help.Diagnostic_Icon.hint,
-              -- },
             },
             {
               "filename",
@@ -298,9 +270,6 @@ return {
           title = false,
           filter = { range = true },
           format = "{kind_icon}{symbol.name:Normal}",
-          -- The following line is needed to fix the background color
-          -- Set it to the lualine section you want to use
-          -- hl_group = "lualine_c_normal",
         })
         table.insert(opts.sections.lualine_c, {
           symbols.get,
@@ -389,5 +358,18 @@ return {
     config = function()
       require("colorizer").setup({})
     end,
+  },
+
+  -- Animates cursor movement with a smear effect.
+  {
+    "sphamba/smear-cursor.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- hide_target_hack = true,
+      -- cursor_color = "none",
+      stiffness = 0.5,
+      trailing_stiffness = 0.5,
+      matrix_pixel_threshold = 0.5,
+    },
   },
 }
