@@ -9,14 +9,14 @@ return {
     branch = "main",
     version = false,
     event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-    cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+    -- cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
     -- opts_extend = { "ensure_installed" },
     ---@alias lazyvim.TSFeat { enable?: boolean, disable?: string[] }
     ---@class lazyvim.TSConfig: TSConfig
     opts = {
-      indent = { enable = true }, ---@type lazyvim.TSFeat
-      highlight = { enable = true }, ---@type lazyvim.TSFeat
-      folds = { enable = true }, ---@type lazyvim.TSFeat
+      indent = { enable = true },
+      highlight = { enable = true },
+      folds = { enable = true },
       ensure_installed = {
         "html",
         "css",
@@ -29,6 +29,9 @@ return {
         "markdown",
         "markdown_inline",
         "json5",
+        "hurl",
+        "bash",
+        "regex",
       },
       textobjects = {
         select = {

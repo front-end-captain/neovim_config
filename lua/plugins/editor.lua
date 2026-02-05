@@ -204,6 +204,7 @@ return {
     lazy = false,
     version = false, -- telescope did only one release, so use HEAD for now
     dependencies = {
+      "nvim-telescope/telescope-live-grep-args.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
