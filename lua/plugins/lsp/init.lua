@@ -42,6 +42,7 @@ return {
   { import = "plugins.lsp.lang.lua" },
   { import = "plugins.lsp.lang.typescript" },
   { import = "plugins.lsp.lang.json" },
+  { import = "plugins.lsp.lang.css" },
 
   -- lspconfig
   {
