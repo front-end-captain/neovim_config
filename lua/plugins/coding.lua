@@ -228,7 +228,8 @@ return {
       {
         "<leader>hp",
         function()
-          require("telescope").extensions.yank_history.yank_history({})
+          -- require("telescope").extensions.yank_history.yank_history({})
+          Snacks.picker.yanky()
         end,
         mode = { "n", "x" },
         desc = "Open Yank History",

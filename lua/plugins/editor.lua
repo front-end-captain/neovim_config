@@ -1,5 +1,5 @@
 local help = require("help")
--- local edit_respect_winfixbuf = require("help.edit_respect_winfixbuf")
+local edit_respect_winfixbuf = require("help.edit_respect_winfixbuf")
 
 return {
   -- file explorer
@@ -244,7 +244,7 @@ return {
             },
             n = {
               ["q"] = actions.close,
-              -- ["<CR>"] = edit_respect_winfixbuf.edit_respect_winfixbuf,
+              ["<CR>"] = edit_respect_winfixbuf.edit_respect_winfixbuf,
               ["P"] = "select_default",
               ["p"] = function(prompt_bufnr)
                 local actions_state = require("telescope.actions.state")
@@ -280,6 +280,9 @@ return {
             layout_config = {
               width = 0.8,
             },
+          },
+          resume = {
+            initial_mode = "normal",
           },
         },
       }

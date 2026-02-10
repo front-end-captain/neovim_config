@@ -157,6 +157,7 @@ function M.findKeywordInCurrentFolder(state)
 
     lga.live_grep_args({
       theme = "ivy",
+      initial_mode = "normal",
       results_title = relative .. "/",
       cwd = node:get_id(),
       default_text = default_text or "",

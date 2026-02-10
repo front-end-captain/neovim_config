@@ -1,7 +1,7 @@
 local utils = require("help")
 
 local DEFAULT_BACKGROUND = "dark"
-local DEFAULT_nvim_color_scheme = "tokyonight"
+local DEFAULT_NVIM_COLOR_SCHEME = "tokyonight"
 
 local wezterm_color_scheme_path = utils.get_host_os_home()
   .. utils.path_separator
@@ -46,6 +46,8 @@ local M = {
   { "folke/tokyonight.nvim" },
   { "sainnhe/gruvbox-material" },
   { "catppuccin/nvim" },
+  { "nyoom-engineering/oxocarbon.nvim" },
+  { "marko-cerovac/material.nvim" },
 }
 
 local colorschemes = {
@@ -72,6 +74,20 @@ local colorschemes = {
         transparent_background = vim.g.transparent_enabled,
         integrations = { blink_cmp = true },
       })
+    end,
+  },
+  {
+    name = "oxocarbon",
+  },
+  {
+    name = "material",
+    callback = function(theme)
+      if theme == "light" then
+        vim.g.material_style = "lighter"
+      else
+        -- darker oceanic palenight
+        vim.g.material_style = "darker"
+      end
     end,
   },
 }
@@ -163,7 +179,7 @@ vim.api.nvim_create_autocmd("User", {
       end
     end
 
-    vim.cmd.colorscheme(nvim_color_scheme_ok and nvim_color_scheme or DEFAULT_nvim_color_scheme)
+    vim.cmd.colorscheme(nvim_color_scheme_ok and nvim_color_scheme or DEFAULT_NVIM_COLOR_SCHEME)
   end,
 })
 
