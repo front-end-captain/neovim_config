@@ -1,5 +1,7 @@
 local utils = require("help")
 
+local NVIM_APPNAME = os.getenv("NVIM_APPNAME") or 'nvim'
+
 local DEFAULT_BACKGROUND = "dark"
 local DEFAULT_NVIM_COLOR_SCHEME = "tokyonight"
 
@@ -106,7 +108,7 @@ local nvim_color_scheme_filename = "color_scheme"
 local nvim_color_scheme_path = os.getenv("HOME")
   .. utils.path_separator
   .. table.concat(
-    { ".config", os.getenv("NVIM_APPNAME"), "lua", nvim_color_scheme_filename .. ".lua" },
+    { ".config", NVIM_APPNAME, "lua", nvim_color_scheme_filename .. ".lua" },
     utils.path_separator
   )
 
