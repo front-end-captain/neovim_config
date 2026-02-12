@@ -69,8 +69,8 @@ return {
       statuscolumn = { enabled = false }, -- we set this in options.lua
       words = { enabled = true },
       dashboard = { enabled = false },
-      terminal = { enabled = false },
       zenmode = { enabled = true },
+      dim = { enabled = true },
     },
     keys = {
       {
