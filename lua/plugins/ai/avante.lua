@@ -8,8 +8,9 @@ return {
       or "make",
     event = "VeryLazy",
     opts = {
-      provider = "openai",
-      auto_suggestions_provider = "openai",
+      -- debug = true,
+      provider = "longcat",
+      auto_suggestions_provider = "longcat",
       providers = {
         moonshot = {
           endpoint = "https://api.moonshot.cn/v1",
@@ -29,6 +30,17 @@ return {
             temperature = 0.75,
             max_tokens = 20480,
           },
+        },
+        longcat = {
+          __inherited_from = "openai",
+          api_key_name = "COMPANY_AI_API_KEY",
+          endpoint = os.getenv("COMPANY_AI_ENDPOINT"),
+          model = "LongCat-8B-128K-Chat",
+          -- timeout = 30000, -- Timeout in milliseconds
+          -- extra_request_body = {
+          --   temperature = 0.75,
+          --   max_tokens = 20480,
+          -- },
         },
       },
       selection = {
