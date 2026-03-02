@@ -9,8 +9,8 @@ return {
     event = "VeryLazy",
     opts = {
       -- debug = true,
-      provider = "longcat",
-      auto_suggestions_provider = "longcat",
+      provider = "openai",
+      auto_suggestions_provider = "openai",
       providers = {
         moonshot = {
           endpoint = "https://api.moonshot.cn/v1",
@@ -79,7 +79,7 @@ return {
   -- Make sure to set this up properly if you have lazy=true
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    optional = true,
+    -- optional = true,
     opts = {
       file_types = { "Avante" },
     },
