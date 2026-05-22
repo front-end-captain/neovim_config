@@ -60,6 +60,35 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Auto reload file when changed externally
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = augroup("auto_reload"),
+  pattern = "*",
+  command = "checktime",
+})
+
+-- Copy current file path to default register
+vim.api.nvim_create_user_command("CopyPath", function(opts)
+  local abs = vim.api.nvim_buf_get_name(0)
+  local path
+  if opts.bang then
+    path = abs
+  else
+    local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    if vim.v.shell_error ~= 0 or not root then
+      path = vim.fn.fnamemodify(abs, ":~:.")
+    else
+      path = vim.fn.fnamemodify(abs, ":p"):sub(#root + 2)
+    end
+  end
+  vim.fn.setreg('"', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, {
+  bang = true,
+  desc = "Copy file path to default register (bang for absolute path)",
+})
+
 -- Fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("json_conceal"),

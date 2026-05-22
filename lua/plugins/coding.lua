@@ -223,6 +223,9 @@ return {
         on_yank = true,
         timer = 200,
       },
+      -- ring = {
+      --   ignore_registers = {},
+      -- },
     },
     keys = {
       {
@@ -235,8 +238,8 @@ return {
         desc = "Open Yank History",
       },
       { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
-      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put Text After Cursor" },
-      { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put Text Before Cursor" },
+      -- { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put Text After Cursor" },
+      -- { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put Text Before Cursor" },
     },
   },
 }

@@ -1,6 +1,6 @@
 local utils = require("help")
 
-local NVIM_APPNAME = os.getenv("NVIM_APPNAME") or 'nvim'
+local NVIM_APPNAME = os.getenv("NVIM_APPNAME") or "nvim"
 
 local DEFAULT_BACKGROUND = "dark"
 local DEFAULT_NVIM_COLOR_SCHEME = "tokyonight"
@@ -45,14 +45,22 @@ local function extract_color_scheme_names(colorschemes)
 end
 
 local M = {
+  { "Mofiqul/vscode.nvim" },
   { "folke/tokyonight.nvim" },
   { "sainnhe/gruvbox-material" },
   { "catppuccin/nvim" },
   { "nyoom-engineering/oxocarbon.nvim" },
   { "marko-cerovac/material.nvim" },
+  { "uhs-robert/oasis.nvim" },
 }
 
 local colorschemes = {
+  {
+    name = "vscode",
+    callback = function(theme)
+      require("vscode").setup({ transparent = vim.g.transparent_enabled })
+    end,
+  },
   {
     name = "tokyonight",
     callback = function(theme)
@@ -90,6 +98,15 @@ local colorschemes = {
         -- darker oceanic palenight
         vim.g.material_style = "darker"
       end
+    end,
+  },
+  {
+    name = "oasis",
+    callback = function()
+      require("oasis").setup({
+        style = "twilight",
+        transparent = vim.g.transparent_enabled,
+      })
     end,
   },
 }

@@ -12,6 +12,9 @@ end
 map("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to system clipborad" })
 map("n", "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste to system clipborad" })
 
+-- 在 Visual 模式下，按 p 或 P 粘贴时，自动将被覆盖的内容扔进黑洞寄存器
+-- map("v", "p", '"_dP', { noremap = true, silent = true })
+
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 map("n", "<C-j>", "4j", { noremap = true, silent = true })
@@ -27,11 +30,15 @@ map("n", "dL", "d$", { noremap = true, silent = true, desc = "Delete to line end
 map("n", "yL", "y$", { noremap = true, silent = true, desc = "Yank to line end" })
 
 -- Alt + hjkl jump between windows
-map("n", "<A-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<A-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<A-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<A-h>", "<C-w>h", { desc = "Goto Left Window", remap = true })
+map("n", "<A-j>", "<C-w>j", { desc = "Goto Lower Window", remap = true })
+map("n", "<A-k>", "<C-w>k", { desc = "Goto Upper Window", remap = true })
 map("n", "<A-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 map({ "n", "x" }, "<leader>l", "<cmd>nohlsearch<CR>", { desc = "Clear search" })
 
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+
+-- 双击 Esc 进入终端的normal模式
+-- map("t", "<Esc><Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })

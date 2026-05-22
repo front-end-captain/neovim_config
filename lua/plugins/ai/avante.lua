@@ -11,6 +11,7 @@ return {
       -- debug = true,
       provider = "openai",
       auto_suggestions_provider = "openai",
+      instructions_file = '.claude/CLAUDE.md',
       providers = {
         moonshot = {
           endpoint = "https://api.moonshot.cn/v1",
@@ -75,16 +76,6 @@ return {
   --     },
   --   },
   -- },
-
-  -- Make sure to set this up properly if you have lazy=true
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    -- optional = true,
-    opts = {
-      file_types = { "Avante" },
-    },
-    ft = { "Avante" },
-  },
 
   -- blink.cmp source for avante.nvim
   {

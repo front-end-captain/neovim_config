@@ -166,6 +166,24 @@ return {
             text_align = "left",
           },
         },
+        groups = {
+          options = {
+            toggle_hidden_on_enter = true,
+          },
+          items = {
+            {
+              name = "Terminal",
+              icon = " ",
+              highlight = { sp = "#51AFEF", underline = true },
+              -- 固定在 bufferline 右侧
+              priority = 2,
+              matcher = function(buf)
+                -- return buf.filetype == "toggleterm" or buf.buftype == "terminal"
+                return buf.buftype == "terminal"
+              end,
+            },
+          },
+        },
       },
     },
     config = function(_, opts)

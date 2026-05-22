@@ -1,3 +1,17 @@
+-- 从文件路径向上查找最近的 node_modules/typescript/lib
+local function find_tsdk(path)
+  local function search(dir)
+    local tsdk = dir .. "/node_modules/typescript/lib"
+    if vim.uv.fs_stat(tsdk) then
+      return tsdk
+    end
+    local parent = vim.fn.fnamemodify(dir, ":h")
+    if parent == dir then return nil end
+    return search(parent)
+  end
+  return search(path)
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -31,7 +45,7 @@ return {
             complete_function_calls = true,
             vtsls = {
               enableMoveToFileCodeAction = true,
-              autoUseWorkspaceTsdk = true,
+              autoUseWorkspaceTsdk = false,
               experimental = {
                 maxInlayHintLength = 30,
                 completion = {
@@ -40,6 +54,7 @@ return {
               },
             },
             typescript = {
+              tsdk = "",  -- 由 before_init 动态填入
               updateImportsOnFileMove = { enabled = "always" },
               suggest = {
                 completeFunctionCalls = true,
@@ -54,15 +69,13 @@ return {
               },
             },
           },
-          -- keys = {
-          --   {
-          --     "<leader>cV",
-          --     function()
-          --       LazyVim.lsp.execute({ command = "typescript.selectTypeScriptVersion" })
-          --     end,
-          --     desc = "Select TS workspace version",
-          --   },
-          -- },
+          before_init = function(params, config)
+            -- params.rootPath 是 LSP 协议传来的项目根目录
+            local tsdk = find_tsdk(params.rootPath or vim.fn.getcwd())
+            if tsdk then
+              config.settings.typescript.tsdk = tsdk
+            end
+          end,
         },
         eslint = {
           -- nodePath = local_config_loaded and local_config.eslint.nodePath or "node_modules",

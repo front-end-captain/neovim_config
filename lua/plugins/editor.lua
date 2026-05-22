@@ -433,7 +433,7 @@ return {
         if term.direction == "horizontal" then
           return 15
         elseif term.direction == "vertical" then
-          return vim.o.columns * 0.4
+          return vim.o.columns
         end
       end,
       shell = os.getenv("OS") == "Windows_NT" and "pwsh" or vim.o.shell,
@@ -497,5 +497,34 @@ return {
         end,
       },
     },
+  },
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    -- opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+    -- },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
+    config = function(_, opts)
+      require("render-markdown").setup(opts)
+    end,
   },
 }

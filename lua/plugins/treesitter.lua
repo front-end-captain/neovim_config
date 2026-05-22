@@ -49,7 +49,17 @@ return {
     },
     -- -@param opts lazyvim.TSConfig
     config = function(_, opts)
-      require("nvim-treesitter").setup(opts)
+      local ts = require("nvim-treesitter")
+      ts.setup(opts)
+
+      local installed = ts.get_installed("parsers")
+      local missing = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, opts.ensure_installed)
+
+      if #missing > 0 then
+        ts.install(missing)
+      end
     end,
   },
 
