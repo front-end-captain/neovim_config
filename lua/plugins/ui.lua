@@ -173,7 +173,7 @@ return {
           items = {
             {
               name = "Terminal",
-              icon = " ",
+              icon = "",
               highlight = { sp = "#51AFEF", underline = true },
               -- 固定在 bufferline 右侧
               priority = 2,

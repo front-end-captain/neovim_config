@@ -43,6 +43,7 @@ return {
   { import = "plugins.lsp.lang.typescript" },
   { import = "plugins.lsp.lang.json" },
   { import = "plugins.lsp.lang.css" },
+  { import = "plugins.lsp.lang.python" },
 
   -- lspconfig
   {
