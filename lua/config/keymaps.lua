@@ -34,6 +34,8 @@ map("n", "<A-h>", "<C-w>h", { desc = "Goto Left Window", remap = true })
 map("n", "<A-j>", "<C-w>j", { desc = "Goto Lower Window", remap = true })
 map("n", "<A-k>", "<C-w>k", { desc = "Goto Upper Window", remap = true })
 map("n", "<A-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+map("n", "<A-Left>", ":vertical resize +2<CR>", { desc = "Resize(add) Window", remap = true })
+map("n", "<A-Right>", ":vertical resize -2<CR>", { desc = "Resize(minus) Window", remap = true })
 
 map({ "n", "x" }, "<leader>l", "<cmd>nohlsearch<CR>", { desc = "Clear search" })
 
