@@ -165,6 +165,12 @@ return {
             highlight = "Directory",
             text_align = "left",
           },
+          {
+            filetype = "snacks_terminal",
+            text = "Claude Code",
+            highlight = "Directory",
+            text_align = "left",
+          },
         },
         groups = {
           options = {

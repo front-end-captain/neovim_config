@@ -1,4 +1,3 @@
 return {
-  -- { import = "plugins.ai.avante" },
-  -- { import = "plugins.ai.copilot" },
+  { import = "plugins.ai.claude-code" },
 }
