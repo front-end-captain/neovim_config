@@ -200,4 +200,18 @@ function M.create_undo()
   end
 end
 
+local function get_wezterm_config_root()
+  return M.get_host_os_home()
+    .. M.path_separator
+    .. table.concat({ ".config", "wezterm", "?.lua" }, M.path_separator)
+end
+function M.add_package_path()
+  package.path = package.path
+    .. ";"
+    .. get_wezterm_config_root()
+    .. ";"
+    .. vim.fn.getcwd()
+    .. "/.vscode/?.lua"
+end
+
 return M

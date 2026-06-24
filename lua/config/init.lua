@@ -1,3 +1,7 @@
+local help = require("help")
+
+help.add_package_path()
+
 local M = {}
 
 function M.setup()
