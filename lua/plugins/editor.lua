@@ -1,6 +1,80 @@
 local help = require("help")
 local edit_respect_winfixbuf = require("help.edit_respect_winfixbuf")
 
+local function is_floating_win(win)
+  return vim.api.nvim_win_get_config(win).relative ~= ""
+end
+
+local function find_edit_target_win(neo_tree_win)
+  local terminal_win
+
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    if win ~= neo_tree_win and vim.api.nvim_win_is_valid(win) and not is_floating_win(win) then
+      local buf = vim.api.nvim_win_get_buf(win)
+      local buftype = vim.bo[buf].buftype
+      local filetype = vim.bo[buf].filetype
+
+      if filetype ~= "neo-tree" then
+        if buftype == "" then
+          return win, false
+        elseif buftype == "terminal" and terminal_win == nil then
+          terminal_win = win
+        end
+      end
+    end
+  end
+
+  return terminal_win, terminal_win ~= nil
+end
+
+local function default_neo_tree_open(state)
+  if state.commands and type(state.commands.open) == "function" then
+    state.commands.open(state)
+  end
+end
+
+local function open_neo_tree_file(state)
+  local ok, node = pcall(state.tree.get_node, state.tree)
+  if not (ok and node) or node.type ~= "file" then
+    default_neo_tree_open(state)
+    return
+  end
+
+  local neo_tree_win = vim.api.nvim_get_current_win()
+  local target_win, target_is_terminal = find_edit_target_win(neo_tree_win)
+
+  if not target_win then
+    default_neo_tree_open(state)
+    return
+  end
+
+  local path = node.path or node:get_id()
+  local bufnr = node.extra and node.extra.bufnr
+  local events = require("neo-tree.events")
+  local event_result = events.fire_event(events.FILE_OPEN_REQUESTED, {
+    state = state,
+    path = path,
+    open_cmd = "edit",
+    bufnr = bufnr,
+  }) or {}
+
+  if not event_result.handled then
+    vim.api.nvim_set_current_win(target_win)
+    if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+      vim.cmd.buffer(bufnr)
+    else
+      vim.cmd.edit(vim.fn.fnameescape(path))
+    end
+    vim.bo.buflisted = true
+  end
+
+  events.fire_event(events.FILE_OPENED, path)
+
+  if target_is_terminal and vim.api.nvim_win_is_valid(neo_tree_win) then
+    vim.api.nvim_win_close(neo_tree_win, true)
+  end
+end
+
 return {
   -- file explorer
   {
@@ -71,7 +145,7 @@ return {
       window = {
         position = "right",
         mappings = {
-          ["<cr>"] = "open",
+          ["<cr>"] = open_neo_tree_file,
           ["<space>"] = {
             "toggle_node",
             nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
